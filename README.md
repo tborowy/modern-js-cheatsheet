@@ -1,197 +1,197 @@
-# Modern JavaScript Cheatsheet
+﻿# <a name="modern-javascript-cheatsheet"></a>Współczesny JavaScript - ściągawka
 
 ![Modern JavaScript cheatsheet](https://i.imgur.com/aexPxMb.png)
 <small>Image Credits: [Ahmad Awais ⚡️](https://github.com/ahmadawais)</small>
 
-## Introduction
+## <a name="introduction"></a>Wstęp
 
-### Motivation
+### <a name="motivation"></a>Motywacja
 
-This document is a cheatsheet for JavaScript you will frequently encounter in modern projects and most contemporary sample code.
+W tym dokumencie zebrane zostały elementy języka JavaScript, z którymi często można się spotkać we współczesnych projektach i najnowszych przykładach kodu.
 
-This guide is not intended to teach you JavaScript from the ground up, but to help developers with basic knowledge who may struggle to get familiar with modern codebases (or let's say to learn React for instance) because of the JavaScript concepts used.
+Celem tego przewodnika nie jest nauka JavaScriptu od zera, ale pomoc posiadającym podstawową wiedzę developerom, którzy pracując ze współczesnymi bazami kodu (powiedzmy, ucząc się React) napotykają trudności, wynikające z użytych tam konceptów języka JavaScript.
 
-Besides, I will sometimes provide personal tips that may be debatable but will take care to mention that it's a personal recommendation when I do so.
+Prócz tego, od czasu do czasu będę zamieszczał własne porady, z którymi niekoniecznie trzeba się zgadzać, ale postaram się za każdym razem podkreślać, że chodzi tylko o moja opinię.
 
-> **Note:** Most of the concepts introduced here are coming from a JavaScript language update (ES2015, often called ES6). You can find new features added by this update [here](http://es6-features.org); it's very well done.
+> **Uwaga:** Większość omawianych tu pojęć pochodzi z nowej wersji języka JavaScript (ES2015, często nazywanego ES6). Bardzo dobre omówienie nowych możliwości wprowadzonych w tej wersji można znaleźć [tutaj](http://es6-features.org).
 
-### Complementary Resources
+### <a name="complementary-resources"></a>Materiały uzupełniające
 
-When you struggle to understand a notion, I suggest you look for answers on the following resources:
+Jeśli masz problem ze zrozumieniem jakiegoś pojęcia, proponuję poszukać odpowiedzi w poniższych źródłach:
 
 - [MDN (Mozilla Developer Network)](https://developer.mozilla.org/en-US/search?q=)
 - [You don't know JS (book)](https://github.com/getify/You-Dont-Know-JS)
 - [ES6 Features with examples](http://es6-features.org)
 - [WesBos blog (ES6)](http://wesbos.com/category/es6/)
-- [Javascript Basics for Beginners](https://www.udacity.com/course/javascript-basics--ud804) - a free Udacity course
+- [Javascript Basics for Beginners](https://www.udacity.com/course/javascript-basics--ud804) - bezpłatny kurs od Udacity
 - [Reddit (JavaScript)](https://www.reddit.com/r/javascript/)
-- [Google](https://www.google.com/) to find specific blog and resources
+- [Google](https://www.google.com/) - dla znalezienia specjalistycznych blogów i innych źródeł
 - [StackOverflow](https://stackoverflow.com/questions/tagged/javascript)
 
-## Table of Contents
+## <a name="table-of-contents"></a>Spis treści
 
-- [Modern JavaScript cheatsheet](#modern-javascript-cheatsheet)
-  * [Introduction](#introduction)
-    + [Motivation](#motivation)
-    + [Complementary resources](#complementary-resources)
-  * [Table of contents](#table-of-contents)
-  * [Notions](#notions)
-    + [Variable declaration: var, const, let](#variable-declaration-var-const-let)
-      - [Short explanation](#short-explanation)
-      - [Sample code](#sample-code)
-      - [Detailed explanation](#detailed-explanation)
-      - [External resource](#external-resource)
-    + [Arrow function](#-arrow-function)
-      - [Sample code](#sample-code-1)
-      - [Detailed explanation](#detailed-explanation-1)
-        * [Concision](#concision)
-        * [*this* reference](#this-reference)
-      - [Useful resources](#useful-resources)
-    + [Function default parameter value](#function-default-parameter-value)
-      - [External resource](#external-resource-1)
-    + [Destructuring objects and arrays](#destructuring-objects-and-arrays)
-      - [Explanation with sample code](#explanation-with-sample-code)
-      - [Useful resources](#useful-resources-1)
-    + [Array methods - map / filter / reduce](#array-methods---map--filter--reduce)
-      - [Sample code](#sample-code-2)
-      - [Explanation](#explanation)
+- [Współczesny JavaScript - ściągawka](#modern-javascript-cheatsheet)
+  * [Wstęp](#introduction)
+    + [Motywacja](#motivation)
+    + [Materiały uzupełniające](#complementary-resources)
+  * [Spis treści](#table-of-contents)
+  * [Pojęcia](#notions)
+    + [Deklaracja zmiennych: var, const, let](#variable-declaration-var-const-let)
+      - [Krótkie wyjaśnienie](#short-explanation)
+      - [Przykładowy kod](#sample-code)
+      - [Szczegółowe wyjaśnienie](#detailed-explanation)
+      - [Dodatkowe źródła](#external-resource)
+    + [Funkcje strzałkowe (arrow functions)](#-arrow-function)
+      - [Przykładowy kod](#sample-code-1)
+      - [Szczegółowe wyjaśnienie](#detailed-explanation-1)
+        * [Zwięzłość](#concision)
+        * [Użycie *this*](#this-reference)
+      - [Pomocne źródła](#useful-resources)
+    + [Domyślna wartość argumentów funkcji](#function-default-parameter-value)
+      - [Dodatkowe źródła](#external-resource-1)
+    + [Destrukturyzacja obiektów i tablic](#destructuring-objects-and-arrays)
+      - [Wyjaśnienie z przykładowym kodem](#explanation-with-sample-code)
+      - [Pomocne źródła](#useful-resources-1)
+    + [Metody tablicowe - map / filter / reduce](#array-methods---map--filter--reduce)
+      - [Przykładowy kod](#sample-code-2)
+      - [Wyjaśnienie](#explanation)
         * [Array.prototype.map()](#arrayprototypemap)
         * [Array.prototype.filter()](#arrayprototypefilter)
         * [Array.prototype.reduce()](#arrayprototypereduce)
-      - [External Resource](#external-resource-2)
-    + [Spread operator "..."](#spread-operator-)
-      - [Sample code](#sample-code-3)
-      - [Explanation](#explanation-1)
-        * [In iterables (like arrays)](#in-iterables-like-arrays)
-        * [Function rest parameter](#function-rest-parameter)
-        * [Object properties spreading](#object-properties-spreading)
-      - [External resources](#external-resources)
-    + [Object property shorthand](#object-property-shorthand)
-      - [Explanation](#explanation-2)
-      - [External resources](#external-resources-1)
-    + [Promises](#promises)
-      - [Sample code](#sample-code-4)
-      - [Explanation](#explanation-3)
-        * [Create the promise](#create-the-promise)
-        * [Promise handlers usage](#promise-handlers-usage)
-      - [External Resources](#external-resources-2)
-    + [Template literals](#template-literals)
-      - [Sample code](#sample-code-5)
-      - [External resources](#external-resources-3)
-    + [Tagged Template Literals](#tagged-template-literals)
-      - [External resources](#external-resources-4)
-    + [Imports / Exports](#imports--exports)
-      - [Explanation with sample code](#explanation-with-sample-code-1)
-        * [Named exports](#named-exports)
-        * [Default import / export](#default-import--export)
-      - [External resources](#external-resources-5)
-    + [JavaScript *this*](#-javascript-this)
-      - [External resources](#external-resources-6)
-    + [Class](#class)
-      - [Samples](#samples)
-      - [External resources](#external-resources-7)
-    + [Extends and super keywords](#extends-and-super-keywords)
-      - [Sample Code](#sample-code-6)
-      - [External Resources](#external-resources-8)
-    + [Async Await](#async-await)
-      - [Sample code](#sample-code-7)
-      - [Explanation with sample code](#explanation-with-sample-code-2)
-      - [Error handling](#error-handling)
-      - [External resources](#external-resources-9)
-    + [Truthy / Falsy](#truthy--falsy)
-      - [External resources](#external-resources-10)
-    + [Anamorphisms / Catamporphisms](#anamorphisms-and-catamorphisms)
-      - [Anamorphisms](#anamorphisms)
-      - [Catamorphisms](#catamorphisms)
-      - [External resources](#external-resources-11)
-    + [Generators](#generators)
-      - [External resources](#external-resources-12)
-    + [Static Methods](#static-methods)
-      - [Short Explanation](#short-explanation-1)
-      - [Sample Code](#sample-code-8)
-      - [Detailed Explanation](#detailed-explanation-2)
-        * [Calling other static methods from a static method](#calling-other-static-methods-from-a-static-method)
-        * [Calling static methods from non-static methods](#calling-static-methods-from-non-static-methods)
-      - [External resources](#external-resources-13)
-  * [Glossary](#glossary)
-    + [Scope](#-scope)
-    + [Variable mutation](#-variable-mutation)
+      - [Dodatkowe źródła](#external-resource-2)
+    + [Operator rozwijania "..."](#spread-operator-)
+      - [Przykładowy kod](#sample-code-3)
+      - [Wyjaśnienie](#explanation-1)
+        * [W obiektach iterowalnych (np. w tablicach)](#in-iterables-like-arrays)
+        * [Parametry rest](#function-rest-parameter)
+        * [Rozwijanie własności obiektów](#object-properties-spreading)
+      - [Dodatkowe źródła](#external-resources)
+    + [Skrócony zapis własności obiektów](#object-property-shorthand)
+      - [Wyjaśnienie](#explanation-2)
+      - [Dodatkowe źródła](#external-resources-1)
+    + [Obietnice (promises)](#promises)
+      - [Przykładowy kod](#sample-code-4)
+      - [Wyjaśnienie](#explanation-3)
+        * [Tworzenie obietnicy (promise)](#create-the-promise)
+        * [Użycie procedur obsługi](#promise-handlers-usage)
+      - [Dodatkowe źródła](#external-resources-2)
+    + [Łańcuchy szablonowe (template literals)](#template-literals)
+      - [Przykładowy kod](#sample-code-5)
+      - [Dodatkowe źródła](#external-resources-3)
+    + [Oznaczone łańcuchy szablonowe (tagged template literals)](#tagged-template-literals)
+      - [Dodatkowe źródła](#external-resources-4)
+    + [Importy / eksporty](#imports--exports)
+      - [Wyjaśnienie z przykładowym kodem](#explanation-with-sample-code-1)
+        * [Nazwane eksporty (named exports)](#named-exports)
+        * [Domyślny import / eksport](#default-import--export)
+      - [Dodatkowe źródła](#external-resources-5)
+    + [*this* w JavaScript](#-javascript-this)
+      - [Dodatkowe źródła](#external-resources-6)
+    + [Klasa](#class)`
+      - [Przykłady](#samples)
+      - [Dodatkowe źródła](#external-resources-7)
+    + [Słowa kluczowe extends i super](#extends-and-super-keywords)
+      - [Przykładowy kod](#sample-code-6)
+      - [Dodatkowe źródła](#external-resources-8)
+    + [Składnia async/await](#async-await)
+      - [Przykładowy kod](#sample-code-7)
+      - [Wyjaśnienie z przykładowym kodem](#explanation-with-sample-code-2)
+      - [Obsługa błędów](#error-handling)
+      - [Dodatkowe źródła](#external-resources-9)
+    + [Prawda / Fałsz](#truthy--falsy)
+      - [Dodatkowe źródła](#external-resources-10)
+    + [Anamorfizmy i Katamorfizmy](#anamorphisms-and-catamorphisms)
+      - [Anamorfizmy](#anamorphisms)
+      - [Katamorfizmy](#catamorphisms)
+      - [Dodatkowe źródła](#external-resources-11)
+    + [Generatory](#generators)
+      - [Dodatkowe źródła](#external-resources-12)
+    + [Metody statyczne](#static-methods)
+      - [Krótkie wyjaśnienie](#short-explanation-1)
+      - [Przykładowy kod](#sample-code-8)
+      - [Szczegółowe wyjaśnienie](#detailed-explanation-2)
+        * [Wzywanie innych metod statycznych z metody statycznej](#calling-other-static-methods-from-a-static-method)
+        * [Wzywanie metod statycznych z metod niestatycznych](#calling-static-methods-from-non-static-methods)
+      - [Dodatkowe źródła](#external-resources-13)
+  * [Słowniczek](#glossary)
+    + [Zakres widoczności (scope)](#-scope)
+    + [Przekształcenie zmiennej (variable mutation)](#-variable-mutation)
 
-## Notions
+## <a name="notions"></a>Pojęcia
 
-### Variable declaration: var, const, let
+### <a name="variable-declaration-var-const-let"></a>Deklaracja zmiennych: var, const, let
 
-In JavaScript, there are three keywords available to declare a variable, and each has its differences. Those are ```var```, ```let``` and ```const```.
+W języku JavaScript mamy do dyspozycji trzy słowa kluczowe, za pomocą których deklarowane są zmienne. Są to ```var```, ```let``` and ```const```.
 
-#### Short explanation
+#### <a name="short-explanation"></a>Krótkie wyjaśnienie
 
-Variables declared with ```const``` keyword can't be reassigned, while ```let``` and ```var``` can.
+Zmienne deklarowane z użyciem ```const``` nie moga być ponownie przypisane, natomiast ```let``` i ```var``` mogą.
 
-I recommend always declaring your variables with ```const``` by default, and with ```let``` if you need to *mutate* it or reassign it later.
+Radziłbym zawsze deklarować zmienne za pomocą ```const```, a ```let``` stosować, kiedy zamierzamy *przekształcać* zmienne bądź przypisywać im inną wartość.
 
 <table>
   <tr>
     <th></th>
-    <th>Scope</th>
-    <th>Reassignable</th>
-    <th>Mutable</th>
-   <th><a href="#tdz_sample">Temporal Dead Zone</a></th>
+    <th>Zakres widoczności</th>
+    <th>Można nadpisać</th>
+    <th>Można zmienić</th>
+   <th><a href="#tdz_sample">Czasowo martwa strefa</a></th>
   </tr>
   <tr>
     <th>const</th>
-    <td>Block</td>
-    <td>No</td>
-    <td><a href="#const_mutable_sample">Yes</a></td>
-    <td>Yes</td>
+    <td>Blok</td>
+    <td>Nie</td>
+    <td><a href="#const_mutable_sample">Tak</a></td>
+    <td>Tak</td>
   </tr>
   <tr>
     <th>let</th>
-    <td>Block</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>Yes</td>
+    <td>Blok</td>
+    <td>Tak</td>
+    <td>Tak</td>
+    <td>Tak</td>
   </tr>
    <tr>
     <th>var</th>
-    <td>Function</td>
-    <td>Yes</td>
-    <td>Yes</td>
-    <td>No</td>
+    <td>Funkcja</td>
+    <td>Tak</td>
+    <td>Tak</td>
+    <td>Nie</td>
   </tr>
 </table>
 
-#### Sample code
+#### <a name="sample-code"></a>Przykładowy kod
 
 ```javascript
 const person = "Nick";
-person = "John" // Will raise an error, person can't be reassigned
+person = "John" // Wywoła błąd, person nie może być przepisane
 ```
 
 ```javascript
 let person = "Nick";
 person = "John";
-console.log(person) // "John", reassignment is allowed with let
+console.log(person) // "John", przepisanie jest dozwolone z let
 ```
 
-#### Detailed explanation
+#### <a name="detailed-explanation"></a>Szczegółowe wyjaśnienie
 
-The [*scope*](#scope_def) of a variable roughly means "where is this variable available in the code".
+[*Zakres widoczności*] zmiennej oznacza mniej więcej "to, gdzie zmienna jest dostępna w kodzie".
 
 ##### var
 
-```var``` declared variables are *function scoped*, meaning that when a variable is created in a function, everything in that function can access that variable. Besides, a *function scoped* variable created in a function can't be accessed outside this function.
+Zakresem widoczności zmiennych deklarowanych za pomocą ```var``` jest funkcja. Oznacza to, że jeśli zmienna była stworzona wewnątrz funkcji, to wszystko w ciele tej funkcji ma dostęp do danej zmiennej. Poza tym, zmienna o opisanym zakresie nie jest dostępna poza funkcją.
 
-I recommend you to picture it as if an *X scoped* variable meant that this variable was a property of X.
+Można myśleć o tym następująco: jeśli zakres widoczności zmiennej to *X*, to zmienna ta stanowi jak gdyby własność X.
 
 ```javascript
 function myFunction() {
   var myVar = "Nick";
-  console.log(myVar); // "Nick" - myVar is accessible inside the function
+  console.log(myVar); // "Nick" - myVar dostępna wewnątrz funkcji.
 }
-console.log(myVar); // Throws a ReferenceError, myVar is not accessible outside the function.
+console.log(myVar); // ReferenceError, myVar nie jest dostępna poza funkcją.
 ```
 
-Still focusing on the variable scope, here is a more subtle example:
+A oto mniej oczywisty przykład:
 
 ```javascript
 function myFunction() {
@@ -199,39 +199,39 @@ function myFunction() {
   if (true) {
     var myVar = "John";
     console.log(myVar); // "John"
-    // actually, myVar being function scoped, we just erased the previous myVar value "Nick" for "John"
+    // ponieważ zakresem myVar jest funkcja, zastępujemy wcześniejszą wartość "Nick" wartością "John"
   }
-  console.log(myVar); // "John" - see how the instructions in the if block affected this value
+  console.log(myVar); // "John" - zwróć uwagę, jak instrukcje w bloku if wpłynęły na wartość
 }
-console.log(myVar); // Throws a ReferenceError, myVar is not accessible outside the function.
+console.log(myVar); // ReferenceError, myVar nie jest dostępna poza funkcją.
 ```
 
-Besides, *var* declared variables are moved to the top of the scope at execution. This is what we call [var hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting).
+Poza tym, zmienne zadeklarowane poprzez *var* przy wykonaniu kodu przemieszczają się na początek zakresu widoczności. Proces ten nazywamy [var hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting).
 
-This portion of code:
+Ten fragment kodu:
 
 ```js
-console.log(myVar) // undefined -- no error raised
+console.log(myVar) // undefined -- brak błędu
 var myVar = 2;
 ```
 
-is understood at execution like:
+w momencie wykonania rozumiany jest tak:
 
 ```js
 var myVar;
-console.log(myVar) // undefined -- no error raised
+console.log(myVar) // undefined -- brak błędu
 myVar = 2;
 ```
 
 ##### let
 
-```var``` and ```let ``` are about the same, but ```let``` declared variables
+```var``` i ```let ``` znaczą mniej więcej to samo, ale w przypadku zmiennych zadeklarowanych za pomocą ```let```
 
-- are *block scoped*
-- are **not** accessible before they are assigned
-- can't be re-declared in the same scope
+- zakres widoczności stanowi blok
+- są **niedostępne** przed przypisaniem
+- nie mogą być ponownie zadeklarowane w tym samym zakresie widoczności
 
-Let's see the impact of block-scoping taking our previous example:
+Przyjrzyjmy się blokowemu zakresu widoczności, używając poprzedniego przykładu:
 
 ```javascript
 function myFunction() {
@@ -239,104 +239,105 @@ function myFunction() {
   if (true) {
     let myVar = "John";
     console.log(myVar); // "John"
-    // actually, myVar being block scoped, we just created a new variable myVar.
-    // this variable is not accessible outside this block and totally independent
-    // from the first myVar created !
+    // ponieważ zakresem widoczności myVar jest blok,
+    // właśnie stworzyliśmy nową zmienną myVar.
+    // zmienna ta jest niedostępna poza blokiem i zupełnie
+    // niezależna od pierwszej zmiennej myVar.
   }
-  console.log(myVar); // "Nick", see how the instructions in the if block DID NOT affect this value
+  console.log(myVar); // "Nick", instrukcje bloku if NIE wpłynęły na tę zmienną
 }
-console.log(myVar); // Throws a ReferenceError, myVar is not accessible outside the function.
+console.log(myVar); //  ReferenceError, myVar nie jest dostępna poza funkcją.
 ```
 
-<a name="tdz_sample"></a> Now, what it means for *let* (and *const*) variables for not being accessible before being assigned:
+<a name="tdz_sample"></a> A teraz rozpatrzmy, co oznacza, że zmienne zadeklarowane z *let* (i *const*) są niedostępne przed przypisaniem:
 
 ```js
-console.log(myVar) // raises a ReferenceError !
+console.log(myVar) // wywołuje ReferenceError !
 let myVar = 2;
 ```
 
-By contrast with *var* variables, if you try to read or write on a *let* or *const* variable before they are assigned an error will be raised. This phenomenon is often called [*Temporal dead zone*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone_and_errors_with_let) or *TDZ*.
+W odróżnieniu od zmiennych zadeklarowanych poprzez *var*, próba odczytu bądź nadpisania zmiennej stworzonej za pomocą *let* lub *const* przed przypisaniem wywoła błąd. Zjawisko to nazywane jest często [*Czasowo martwą strefą*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_Dead_Zone_and_errors_with_let) albo *TDZ*
 
-> **Note:** Technically, *let* and *const* variables declarations are being hoisted too, but not their assignation. Since they're made so that they can't be used before assignation, it intuitively feels like there is no hoisting, but there is. Find out more on this [very detailed explanation here](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified) if you want to know more.
+> **Uwaga:** Ściśle rzecz biorąc zmienne zadeklarowane przy pomocy *let* i *const* też są windowane, ale nie przypisywane. Ponieważ nie mogą one być użyte przed przypisaniem, może się wydawać, że nie dochodzi do windowania (hoistingu), co nie jest prawdą. Jeśli chcesz dowiedzieć się więcej, możesz zapoznać się z [dokładnym omówieniem tego zjawiska](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified).
 
-In addition, you can't re-declare a *let* variable:
+Ponadto nie można ponownie zadeklarować zmiennej stworzonej z *let*
 
 ```js
 let myVar = 2;
-let myVar = 3; // Raises a SyntaxError
+let myVar = 3; // wywołuje błąd składni
 ```
 
 ##### const
 
-```const``` declared variables behave like *let* variables, but also they can't be reassigned.
+Zmienne zadeklarowane poprzez słowo kluczowe ```const``` zachowują się, jak te zadeklarowane z *let*, ale nie mogą być ponownie przypisane.
 
-To sum it up, *const* variables:
+Podsumowując, zmienne stworzone z *const*:
 
-- are *block scoped*
-- are not accessible before being assigned
-- can't be re-declared in the same scope
-- can't be reassigned
+- ich zakresem widoczności jest blok
+- nie są dostępne przed przypisaniem
+- nie mogą być ponownie zadeklarowane w tym samym zakresie widoczności
+- nie mogą być ponownie przypisane
 
 ```js
 const myVar = "Nick";
-myVar = "John" // raises an error, reassignment is not allowed
+myVar = "John" // wywołuje błąd, ponowne przypisanie jest niedozwolone
 ```
 
 ```js
 const myVar = "Nick";
-const myVar = "John" // raises an error, re-declaration is not allowed
+const myVar = "John" // wywołuje błąd, ponowna deklaracja jest niedozwolone
 ```
 
-<a name="const_mutable_sample"></a> But there is a subtlety : ```const``` variables are not [**immutable**](#mutation_def) ! Concretely, it means that *object* and *array* ```const``` declared variables **can** be mutated.
+<a name="const_mutable_sample"></a> Jest jednak pewien szczegół : zmienne zadeklarowane z ```const``` nie są [**niezmienne**](#mutation_def) ! Konkretnie, oznacza to, że *objekty* i *tablice* zadeklarowane poprzez ```const``` **mogą** podlegać modyfikacjom.
 
-For objects:
+W przypadku obiektów:
 ```js
 const person = {
   name: 'Nick'
 };
-person.name = 'John' // this will work ! person variable is not completely reassigned, but mutated
+person.name = 'John' // działa! Zmienna person nie jest ponownie przypisywana, ale ulega zmianie.
 console.log(person.name) // "John"
-person = "Sandra" // raises an error, because reassignment is not allowed with const declared variables
+person = "Sandra" // wywoła błąd, ponieważ nie można nadpisywać zmiennych deklarowanych poprzez const
 ```
 
-For arrays:
+W przypadku tablic:
 ```js
 const person = [];
-person.push('John'); // this will work ! person variable is not completely reassigned, but mutated
+person.push('John'); // działa! Zmienna person nie jest ponownie przypisywana, ale ulega zmianie.
 console.log(person[0]) // "John"
-person = ["Nick"] // raises an error, because reassignment is not allowed with const declared variables
+person = ["Nick"] // wywoła błąd, ponieważ nie można nadpisywać zmiennych deklarowanych poprzez const
 ```
 
-#### External resource
+#### <a name="external-resource"></a>Dodatkowe źródła
 
 - [How let and const are scoped in JavaScript - WesBos](http://wesbos.com/javascript-scoping/)
 - [Temporal Dead Zone (TDZ) Demystified](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified)
 
-### <a name="arrow_func_concept"></a> Arrow function
+### <a name="-arrow_func"></a> Funkcje strzałkowe (arrow functions)
 
-The ES6 JavaScript update has introduced *arrow functions*, which is another way to declare and use functions. Here are the benefits they bring:
+W wersji ES6 JavaScript wprowadzone zostały *funkcje strzałkowe* (*arrow functions*) - nowy sposób zapisu funkcji. Oto niektóre jego zalety:
 
-- More concise
-- *this* is picked up from surroundings
-- implicit return
+- większa zwięzłość
+- *this* pobierane jest z otaczającego kontekstu
+- niejawny zwrot (implicit return)
 
-#### Sample code
+#### <a name="sample-code-1"></a>Przykładowy kod
 
-- Concision and implicit return
+- Zwięzłość i niejawny zwrot
 
 ```js
-function double(x) { return x * 2; } // Traditional way
+function double(x) { return x * 2; } // Tradycyjny sposób
 console.log(double(2)) // 4
 ```
 
 ```js
-const double = x => x * 2; // Same function written as an arrow function with implicit return
+const double = x => x * 2; // Ta sama funkcja jako funkcja strzałkowa z niejawnym zwrotem
 console.log(double(2)) // 4
 ```
 
-- *this* reference
+- Użycie *this*
 
-In an arrow function, *this* is equal to the *this* value of the enclosing execution context. Basically, with arrow functions, you don't have to do the "that = this" trick before calling a function inside a function anymore.
+W funkcji strzałkowej *this* jest równe wartości *this* w otaczającym zakresie widoczności. Zasadniczo, dzięki funkcjom strzałkowym, nie ma już potrzeby używania tricku "that = this" przed wywołaniem funkcji wewnątrz funkcji.
 
 ```js
 function myFunc() {
@@ -348,15 +349,15 @@ function myFunc() {
 }
 ```
 
-#### Detailed explanation
+#### <a name="detailed-explanation-1"></a>Szczegółowe wyjaśnienie
 
-##### Concision
+##### <a name="concision"></a>Zwięzłość
 
-Arrow functions are more concise than traditional functions in many ways. Let's review all the possible cases:
+Funkcje strzałkowe są w wielu aspektach bardziej zwięzłe niż tradycyjne funkcje. Rozpatrzmy kilka przypadków:
 
-- Implicit VS Explicit return
+- Jawny vs niejawny zwrot
 
-An **explicit return** is a function where the *return* keyword is used in its body.
+**Jawny zwrot** (**explicit return**) to funkcja, w której ciele użyte jest słowo kluczowe *return*.
 
 ```js
   function double(x) {
@@ -364,96 +365,96 @@ An **explicit return** is a function where the *return* keyword is used in its b
   }
 ```
 
-In the traditional way of writing functions, the return was always explicit. But with arrow functions, you can do *implicit return* which means that you don't need to use the keyword *return* to return a value.
+Przy tradycyjnym sposobie pisania funkcji zwrot był zawsze jawny. Jednak arrow functions pozwalają na *niejawny zwrot*, czyli taki, w którym słowo kluczowe *return* nie jest konieczne przy zwrocie wartości.
 
 ```js
   const double = (x) => {
-    return x * 2; // Explicit return here
+    return x * 2; // Jawny zwrot
   }
 ```
 
-Since this function only returns something (no instructions before the *return* keyword) we can do an implicit return.
+Ponieważ funkcja ta ogranicza się do zwrotu pewnej wartości (poza tym brak innych instrukcji), możemy użyć niejawnego zwrotu.
 
 ```js
-  const double = (x) => x * 2; // Correct, returns x*2
+  const double = (x) => x * 2; // Poprawnie, zwraca x*2
 ```
 
-To do so, we only need to **remove the brackets** and the **return** keyword. That's why it's called an *implicit* return, the *return* keyword is not there, but this function will indeed return ```x * 2```.
+By to zrobić, musimy ***usunąć nawiasy* i słowo **return**. Stąd też nazwa *niejawny* (implicit) zwrot - mimo braku słowa kluczowego **return**, funkcja i tak zwróci ```x * 2```.
 
-> **Note:** If your function does not return a value (with *side effects*), it doesn't do an explicit nor an implicit return.
+> **Uwaga:** Jeśli funkcja nie zwraca żadnej wartości (z *efektami ubocznymi*), nie ma w niej ani jawnego ani niejawnego zwrotu.
 
-Besides, if you want to implicitly return an *object* you **must have parentheses around it** since it will conflict with the block braces:
+Poza tym, jeśli chcemy niejawnie zwrócić *obiekt*, należy **otoczyć go okrągłymi nawiasami**, by nie dopuścić do konfliktu z nawiasami samego bloku.
 
 ```js
 const getPerson = () => ({ name: "Nick", age: 24 })
-console.log(getPerson()) // { name: "Nick", age: 24 } -- object implicitly returned by arrow function
+console.log(getPerson()) // { name: "Nick", age: 24 } -- obiekt niejawnie zwracany przez arrow function
 ```
 
-- Only one argument
+- Tylko jeden argument
 
-If your function only takes one parameter, you can omit the parentheses around it. If we take back the above *double* code:
+Jeśli funkcja posiada tylko jeden argument, możemy ominąć nawiasy wokół niego. Przyjrzyjmy się ponownie funkcji *double* z poprzedniego kodu:
 
 ```js
-  const double = (x) => x * 2; // this arrow function only takes one parameter
+  const double = (x) => x * 2; // arrow function ma jeden argument
 ```
 
-Parentheses around the parameter can be avoided:
+Nawiasy wokół argumentu można usunąć:
 
 ```js
-  const double = x => x * 2; // this arrow function only takes one parameter
+  const double = x => x * 2; // arrow function ma jeden argument
 ```
 
-- No arguments
+- Brak argumentów
 
-When there is no argument provided to an arrow function, you need to provide parentheses, or it won't be valid syntax.
+Gdy funkcja nie ma argumentu, należy użyć okrągłych nawiasów, jeśli chcemy zachować poprawną składnię.
 
 ```js
-  () => { // parentheses are provided, everything is fine
+  () => { // są nawiasy, wszystko w porządku
     const x = 2;
     return x;
   }
 ```
 
 ```js
-  => { // No parentheses, this won't work!
+  => { // brak nawiasów, kod nie będzie działać!
     const x = 2;
     return x;
   }
 ```
 
-##### *this* reference
+##### <a name="this-reference"></a>Użycie *this*
 
-To understand this subtlety introduced with arrow functions, you must know how [this](#this_def) behaves in JavaScript.
+Aby w pełni zrozumieć działanie funkcji strzałkowych, trzeba wiedzieć, jak w JavaScript zachowuje się [this](#this_def).
 
-In an arrow function, *this* is equal to the *this* value of the enclosing execution context. What it means is that an arrow function doesn't create a new *this*, it grabs it from its surrounding instead.
+W funckji strzałkowej *this* jest równe wartości *this* w otaczającym kontekście. Oznacza to, że funkcja strzałkowa nie tworzy nowego *this*, ale zamiast tego pobiera je z otoczenia.
 
-Without arrow function, if you wanted to access a variable from *this* in a function inside a function, you had to use the *that = this* or *self = this* trick.
+Bez funkcji strzałkowej, jeśli chcemy otrzymać dostęp do zmiennej przez *this* w funkcji znajdującej się w innej funkcji musimy użyć tricku *that = this* lub *self = this*.
 
-For instance, using setTimeout function inside myFunc:
+Na przykład, używając funkcji setTimeout w myFunc:
 
 ```js
 function myFunc() {
   this.myVar = 0;
   var that = this; // that = this trick
   setTimeout(
-    function() { // A new *this* is created in this function scope
+    function() { // Nowy *this* tworzony w tym zakresie widoczności
       that.myVar++;
       console.log(that.myVar) // 1
 
-      console.log(this.myVar) // undefined -- see function declaration above
+      console.log(this.myVar) // undefined -- patrz wyżej: deklaracja funkcji
     },
     0
   );
 }
 ```
 
-But with arrow function, *this* is taken from its surrounding:
+Ale w przypadku funkcji strzałkowej, *this* pobierane jest z otoczenia:
 
 ```js
 function myFunc() {
   this.myVar = 0;
   setTimeout(
-    () => { // this taken from surrounding, meaning myFunc here
+    () => { // this pobierane z otoczenia. W tym przypadku - z myFunc.
       this.myVar++;
       console.log(this.myVar) // 1
     },
@@ -462,52 +463,52 @@ function myFunc() {
 }
 ```
 
-#### Useful resources
+#### <a name="useful-resources"></a>Pomocne źródła
 
 - [Arrow functions introduction - WesBos](http://wesbos.com/arrow-functions/)
 - [JavaScript arrow function - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 - [Arrow function and lexical *this*](https://hackernoon.com/javascript-es6-arrow-functions-and-lexical-this-f2a3e2a5e8c4)
 
-### Function default parameter value
+### <a name="function-default-parameter-value"></a>Domyślna wartość argumentów funkcji
 
-Starting from ES2015 JavaScript update, you can set default value to your function parameters using the following syntax:
+Począwszy od wersji ES2015, możliwe jest ustawienie domyślnej wartości argumentów funkcji przy użyciu następującej składni:
 
 ```js
 function myFunc(x = 10) {
   return x;
 }
-console.log(myFunc()) // 10 -- no value is provided so x default value 10 is assigned to x in myFunc
-console.log(myFunc(5)) // 5 -- a value is provided so x is equal to 5 in myFunc
+console.log(myFunc()) // 10 -- żadna wartość nie jest podana, x otrzymuje wartość domyślną, czyli 10
+console.log(myFunc(5)) // 5 -- wartość podana, więc x otrzymuje wartość 5
 
-console.log(myFunc(undefined)) // 10 -- undefined value is provided so default value is assigned to x
-console.log(myFunc(null)) // null -- a value (null) is provided, see below for more details
+console.log(myFunc(undefined)) // 10 -- podana wartość undefined, więc x otrzymuje wartość domyślną, czyli 10
+console.log(myFunc(null)) // null -- wartość (null) jest podana, zobacz: niżej.
 ```
 
-The default parameter is applied in two and only two situations:
+Domyślny argument będzie użyty jedynie w dwóch sytuacjach:
 
-- No parameter provided
-- *undefined* parameter provided
+- żaden argument nie jest podany
+- jako argument podano *undefined*
 
-In other words, if you pass in *null* the default parameter **won't be applied**.
+Innymi słowami, jeśli jako argument podamy *null*, wartość domyślna **nie zostanie użyta**.
 
-> **Note:** Default value assignment can be used with destructured parameters as well (see next notion to see an example)
+> **Note:** Przypisanie wartości domyślnej można zastować także z destrukturyzowanymi parametrami (patrz: następna sekcja)
 
-#### External resource
+#### <a name="external-resource-1"></a>Dodatkowe źródła
 
 - [Default parameter value - ES6 Features](http://es6-features.org/#DefaultParameterValues)
 - [Default parameters - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
-### Destructuring objects and arrays
+### <a name="destructuring-objects-and-arrays"></a>Destrukturyzacja obiektów i tablic
 
-*Destructuring* is a convenient way of creating new variables by extracting some values from data stored in objects or arrays.
+*Destrukturyzacja* to wygodny sposób tworzenia nowych zmiennych poprzez wydobycie pewnych wartości z danych przechowywanych w obiektach i tablicach.
 
-To name a few use cases, *destructuring* can be used to destructure function parameters or *this.props* in React projects for instance.
+*Destrukturyzacja* może być użyta do przypisania zmiennym rozbitych na części parametrów funkcji lub *this.props* w projektach React.
 
-#### Explanation with sample code
+#### <a name="explanation-with-sample-code"></a>Wyjaśnienie z przykładowym kodem
 
-- Object
+- Obiekt
 
-Let's consider the following object for all the samples:
+We wszystkich przykładach używać będziemy następującego obiektu:
 
 ```js
 const person = {
@@ -518,7 +519,7 @@ const person = {
 }
 ```
 
-Without destructuring
+Bez destrukturyzacji:
 
 ```js
 const first = person.firstName;
@@ -526,24 +527,24 @@ const age = person.age;
 const city = person.city || "Paris";
 ```
 
-With destructuring, all in one line:
+Z destrukturyzacją, wszystko w jednej linijce:
 
 ```js
-const { firstName: first, age, city = "Paris" } = person; // That's it !
+const { firstName: first, age, city = "Paris" } = person; // Gotowe !
 
-console.log(age) // 35 -- A new variable age is created and is equal to person.age
-console.log(first) // "Nick" -- A new variable first is created and is equal to person.firstName
-console.log(firstName) // Undefined -- person.firstName exists BUT the new variable created is named first
-console.log(city) // "Paris" -- A new variable city is created and since person.city is undefined, city is equal to the default value provided "Paris".
+console.log(age) // 35 -- Stworzono nową zmienną równą person.age
+console.log(first) // "Nick" -- Stworzono nową zmienną równą person.firstName
+console.log(firstName) // Undefined -- person.firstName istnieje, ale nowo stworzona zmienna nazywa się first
+console.log(city) // "Paris" -- Stworzono nową zmienną city i, ponieważ person.city jest równe undefined, zmienna jest równa domyślnej wartość "Paris".
 ```
 
-**Note :** In ```const { age } = person;```, the brackets after *const* keyword are not used to declare an object nor a block but is the *destructuring* syntax.
+**Uwaga:** W ```const { age } = person;``` nawiasy po słowie *const* nie są użyte do deklaracji obiektu ani jako blok, ale jako składnia *destrukturyzacji*.
 
-- Function parameters
+- Argumenty funkcji
 
-*Destructuring* is often used to destructure objects parameters in functions.
+*Destrukturyzacja* jest często używana do rozbicia parametrów funkcji na części.
 
-Without destructuring
+Bez destrukturyzacji:
 
 ```js
 function joinFirstLastName(person) {
@@ -555,17 +556,17 @@ function joinFirstLastName(person) {
 joinFirstLastName(person); // "Nick-Anderson"
 ```
 
-In destructuring the object parameter *person*, we get a more concise function:
+Jeśli destrukturyzujemy parametr *person*, otrzymujemy znacznie bardziej zwięzłą funkcję:
 
 ```js
-function joinFirstLastName({ firstName, lastName }) { // we create firstName and lastName variables by destructuring person parameter
+function joinFirstLastName({ firstName, lastName }) { // tworzymy zmienne firstName i lastName z części argumentu person.
   return firstName + '-' + lastName;
 }
 
 joinFirstLastName(person); // "Nick-Anderson"
 ```
 
-Destructuring is even more pleasant to use with [arrow functions](#arrow_func_concept):
+Destrukturyzacja jest jeszcze przyjemniejsza, gdy użyjemy [funkcji strzałkowych](#arrow_func_concept):
 
 ```js
 const joinFirstLastName = ({ firstName, lastName }) => firstName + '-' + lastName;
@@ -573,51 +574,51 @@ const joinFirstLastName = ({ firstName, lastName }) => firstName + '-' + lastNam
 joinFirstLastName(person); // "Nick-Anderson"
 ```
 
-- Array
+- Tablica
 
-Let's consider the following array:
+Rozpatrzmy następującą tablicę:
 
 ```js
 const myArray = ["a", "b", "c"];
 ```
 
-Without destructuring
+Bez destrukturyzacji
 
 ```js
 const x = myArray[0];
 const y = myArray[1];
 ```
 
-With destructuring
+Z destrukturyzacją
 
 ```js
-const [x, y] = myArray; // That's it !
+const [x, y] = myArray; // Gotowe !
 
 console.log(x) // "a"
 console.log(y) // "b"
 ```
 
-#### Useful resources
+#### <a name="useful-resources-1"></a>Pomocne źródła
 
 - [ES6 Features - Destructuring Assignment](http://es6-features.org/#ArrayMatching)
 - [Destructuring Objects - WesBos](http://wesbos.com/destructuring-objects/)
 - [ExploringJS - Destructuring](http://exploringjs.com/es6/ch_destructuring.html)
 
-### Array methods - map / filter / reduce
+### <a name="array-methods---map--filter--reduce"></a>Metody tablicowe - map / filter / reduce
 
-*Map*, *filter* and *reduce* are array methods that are coming from a programming paradigm named [*functional programming*](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0).
+*Map*, *filter* i *reduce* to metody tablicowe zapożyczone z paradygmatu [*programowania funkcyjnego*](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0).
 
-To sum it up:
+Opiszmy je krótko:
 
-- **Array.prototype.map()** takes an array, does something on its elements and returns an array with the transformed elements.
-- **Array.prototype.filter()** takes an array, decides element by element if it should keep it or not and returns an array with the kept elements only
-- **Array.prototype.reduce()** takes an array and aggregates the elements into a single value (which is returned)
+- **Array.prototype.map()** przyjmuje jako argument tablicę, modyfikuje jej elementy i zwraca nową tablicę ze zmienionymi elementami.
+- **Array.prototype.filter()** przyjmuje jako argument tablicę, decyduje, które elementy zatrzymać a które usunąć. Zwraca tablicę z zachowanymi elementami.
+- **Array.prototype.reduce()** przyjmuje jako argument tablicę, wylicza z jej elementów jedną wspólną wartość, którą zwraca.
 
-I recommend to use them as much as possible in following the principles of functional programming because they are composable, concise and elegant.
+Polecam używać ich jak najczęściej, zgodnie z zasadami programowania funkcyjnego, ponieważ metody tablicowe są zwięzłe, eleganckie i można je ze sobą łączyć.
 
-With those three methods, you can avoid the use of *for* and *forEach* loops in most situations. When you are tempted to do a *for* loop, try to do it with *map*, *filter* and *reduce* composed. You might struggle to do it at first because it requires you to learn a new way of thinking, but once you've got it things get easier.
+Wykorzystując trzy powyższe metody możemy uniknąć użycia pętli *for* i *forEach* w większości sytuacji. Kiedy następnym razem będziesz chciał skorzystać z pętli *for*, spróbuj zamiast niej użyć kompozycji *map*, *filter* i *reduce*. Z początku może to sprawiać problemy, bo wymaga przyzwyczajenia sie do nowego sposobu myślenia, ale jeśli już go przyswoisz, wszystko będzie prostsze.
 
-#### Sample code
+#### <a name="sample-code-2"></a>Przykładowy kod
 
 ```js
 const numbers = [0, 1, 2, 3, 4, 5, 6];
@@ -626,7 +627,7 @@ const evenNumbers = numbers.filter(n => n % 2 === 0); // [0, 2, 4, 6]
 const sum = numbers.reduce((prev, next) => prev + next, 0); // 21
 ```
 
-Compute total grade sum for students with grades 10 or above by composing map, filter and reduce:
+Obliczmy sumę ocen wszystkich studentów z oceną powyżej 10 łącząc *map*, *filter* i *reduce*:
 
 ```js
 const students = [
@@ -637,22 +638,22 @@ const students = [
 ];
 
 const aboveTenSum = students
-  .map(student => student.grade) // we map the students array to an array of their grades
-  .filter(grade => grade >= 10) // we filter the grades array to keep those 10 or above
-  .reduce((prev, next) => prev + next, 0); // we sum all the grades 10 or above one by one
+  .map(student => student.grade) // tworzymy tablicę ocen z tablicy studentów za pomocą map
+  .filter(grade => grade >= 10) // filtrujemy tablicę ocen, by pozostawić większe lub równe 10
+  .reduce((prev, next) => prev + next, 0); // sumujemy wszystkie oceny powyżej 10
 
-console.log(aboveTenSum) // 44 -- 10 (Nick) + 15 (John) + 19 (Julia), Nathalie below 10 is ignored
+console.log(aboveTenSum) // 44 -- 10 (Nick) + 15 (John) + 19 (Julia), Nathalie poniżej 10 - ignorowana
 ```
 
-#### Explanation
+#### <a name="explanation"></a>Wyjaśnienie
 
-Let's consider the following array of numbers for our examples:
+W przykładach wykorzystywać będziemy poniższą tablicę:
 
 ```js
 const numbers = [0, 1, 2, 3, 4, 5, 6];
 ```
 
-##### Array.prototype.map()
+##### <a name="arrayprototypemap"></a>Array.prototype.map()
 
 ```js
 const doubledNumbers = numbers.map(function(n) {
@@ -661,9 +662,9 @@ const doubledNumbers = numbers.map(function(n) {
 console.log(doubledNumbers); // [0, 2, 4, 6, 8, 10, 12]
 ```
 
-What's happening here? We are using .map on the *numbers* array, the map is iterating on each element of the array and passes it to our function. The goal of the function is to produce and return a new value from the one passed so that map can replace it.
+Co tu się dzieje? Używamy *map* na tablicy *numbers*, *map* iteruje przez każdy element i używa go jako argumentu funkcji. Celem funkcji jest przeprowadzenie kalkulacji i zwrot nowej wartości, która zastąpi wartość użytą jako argument.
 
-Let's extract this function to make it more clear, just for this once:
+Wydzielmy funkcję z tablicy, żeby przyjrzeć się jej bliżej:
 
 ```js
 const doubleN = function(n) { return n * 2; };
@@ -671,103 +672,103 @@ const doubledNumbers = numbers.map(doubleN);
 console.log(doubledNumbers); // [0, 2, 4, 6, 8, 10, 12]
 ```
 
-```numbers.map(doubleN)``` produces ```[doubleN(0), doubleN(1), doubleN(2), doubleN(3), doubleN(4), doubleN(5), doubleN(6)]``` which is equal to ```[0, 2, 4, 6, 8, 10, 12]```.
+```numbers.map(doubleN)``` tworzy ```[doubleN(0), doubleN(1), doubleN(2), doubleN(3), doubleN(4), doubleN(5), doubleN(6)]```, które są równe ```[0, 2, 4, 6, 8, 10, 12]```.
+.
+> **Uwaga:** Jeśli nie potrzebujesz zwrotu nowej tablicy i chcesz po prostu użyć pętli posiadającej efekty uboczne, możesz rozważyć użycie pętli for / forEach zamiast map.
 
-> **Note:** If you do not need to return a new array and just want to do a loop that has side effects, you might just want to use a for / forEach loop instead of a map.
-
-##### Array.prototype.filter()
+##### <a name="arrayprototypefilter"></a>Array.prototype.filter()
 
 ```js
 const evenNumbers = numbers.filter(function(n) {
-  return n % 2 === 0; // true if "n" is par, false if "n" isn't
+  return n % 2 === 0; // true jeśli n jest parzyste, false jeśli nie jest
 });
 console.log(evenNumbers); // [0, 2, 4, 6]
 ```
 
-We are using .filter on the *numbers* array, filter is iterating on each element of the array and passes it to our function. The goal of the function is to return a boolean that will determine whether the current value will be kept or not. Filter then returns the array with only the kept values.
+Używamy *filter* na tablicy *numbers*, *filter* iteruje przez każdy element i używa go jako argumentu funkcji. Celem funkcji jest zwrot zmiennej typu boolowskiego, która określi, czy daną wartość należy zachować, czy też nie. Następnie funkcja zwraca tablicę, zawierającą jedynie zachowane wartości.
 
-##### Array.prototype.reduce()
+##### <a name="arrayprototypereduce"></a>Array.prototype.reduce()
 
-The reduce method goal is to *reduce* all elements of the array it iterates on into a single value. How it aggregates those elements is up to you.
+Celem metody *reduce* jest wyliczenie na podstawie tablicy pewnej pojedynczej wartości. Jakie wyliczenia przeprowadzi metoda, zależy tylko od ciebie.
 
 ```js
 const sum = numbers.reduce(
   function(acc, n) {
     return acc + n;
   },
-  0 // accumulator variable value at first iteration step
+  0 // wartość zmiennej akumulującej po pierwszej iteracji
 );
 
 console.log(sum) //21
 ```
 
-Just like for .map and .filter methods, .reduce is applied on an array and takes a function as the first parameter.
+Tak jak metody .map i .filter, .reduce wykorzystuje tablicę i jako pierwszy argument przyjmuje funkcję.
 
-This time though, there are changes:
+Są jednak pewne różnice:
 
-- .reduce takes two parameters
+- .reduce przyjmuje dwa argumenty
 
-The first parameter is a function that will be called at each iteration step.
+Pierwszy argument to funkcja, która będzie stosowana przy każdej iteracji.
 
-The second parameter is the value of the accumulator variable (*acc* here) at the first iteration step (read next point to understand).
+Drugi argument to wartość zmiennej akumulującej (w naszym przypadku *acc*) w pierwszej iteracji (by lepiej zrozumieć, czytaj dalej).
 
-- Function parameters
+- Argumenty funkcji
 
-The function you pass as the first parameter of .reduce takes two parameters. The first one (*acc* here) is the accumulator variable, whereas the second parameter (*n*) is the current element.
+Funkcja używana jako pierwszy argument .reduce przyjmuje dwa argumenty. Pierwszy (w naszym przypadku *acc*) to zmienna akumulująca, drugi (*n*) - obecny element.
 
-The accumulator variable is equal to the return value of your function at the **previous** iteration step. At the first step of the iteration, *acc* is equal to the value you passed as .reduce second parameter.
+Zmienna akumulująca równa jest wartości zwróconej przez naszą funkcję w **poprzedniej** iteracji. Na początku każdej iteracji *acc* równa jest wartości, która była przekazana jako drugi argument .reduce.
 
-###### At first iteration step
+###### W pierwszej iteracji
 
-```acc = 0``` because we passed in 0 as the second parameter for reduce
+```acc = 0``` ponieważ jako drugi element *reduce* podaliśmy 0
 
-```n = 0``` first element of the *number* array
+```n = 0``` pierwszy element tablicy *array*
 
-Function returns *acc* + *n* --> 0 + 0 --> 0
+Funkcja zwraca *acc* + *n* --> 0 + 0 --> 0
 
-###### At second iteration step
+###### W drugiej iteracji
 
-```acc = 0``` because it's the value the function returned at the previous iteration step
+```acc = 0``` ponieważ taką wartość funkcja zwróciła przy poprzedniej iteracji
 
-```n = 1``` second element of the *number* array
+```n = 1``` drugi element tablicy *array*
 
-Function returns *acc* + *n* --> 0 + 1 --> 1
+Funkcja zwraca *acc* + *n* --> 0 + 1 --> 1
 
-###### At third iteration step
+###### W trzeciej iteracji
 
-```acc = 1``` because it's the value the function returned at the previous iteration step
+```acc = 1``` ponieważ taką wartość funkcja zwróciła przy poprzedniej iteracji
 
-```n = 2``` third element of the *number* array
+```n = 2``` trzeci element tablicy *array*
 
-Function returns *acc* + *n* --> 1 + 2 --> 3
+Funkcja zwraca *acc* + *n* --> 1 + 2 --> 3
 
-###### At fourth iteration step
+###### W czwartej iteracji
 
-```acc = 3``` because it's the value the function returned at the previous iteration step
+```acc = 3``` ponieważ taką wartość funkcja zwróciła przy poprzedniej iteracji
 
-```n = 3``` fourth element of the *number* array
+```n = 3``` czwarty element tablicy *array*
 
-Function returns *acc* + *n* --> 3 + 3 --> 6
+Funkcja zwraca *acc* + *n* --> 3 + 3 --> 6
 
-###### [...] At last iteration step
+###### [...] W ostatniej iteracji
 
-```acc = 15``` because it's the value the function returned at the previous iteration step
+```acc = 15``` ponieważ taką wartość funkcja zwróciła przy poprzedniej iteracji
 
-```n = 6``` last element of the *number* array
+```n = 6``` ostatni element tablicy *array*
 
-Function returns *acc* + *n* --> 15 + 6 --> 21
+Funkcja zwraca *acc* + *n* --> 15 + 6 --> 21
 
-As it is the last iteration step, **.reduce** returns 21.
+Ponieważ to ostatnia iteracja, **.reduce** zwraca 21.
 
-#### External Resource
+#### <a name="external-resource-2"></a>Dodatkowe źródła
 
 - [Understanding map / filter / reduce in JS](https://hackernoon.com/understanding-map-filter-and-reduce-in-javascript-5df1c7eee464)
 
-### Spread operator "..."
+### <a name="spread-operator-"></a>Operator rozwijania "..."
 
-The spread operator ```...``` has been introduced with ES2015 and is used to expand elements of an iterable (like an array) into places where multiple elements can fit.
+Operator rozwijania ```...``` został wprowadzony z ES2015 i przeznaczony jest do "rozwijania" elementów obiektów iterowalnych (np. tablic) tam, gdzie można zmieścić kilka elementów
 
-#### Sample code
+#### <a name="sample-code-3"></a>Przykładowy kod
 
 ```js
 const arr1 = ["a", "b", "c"];
@@ -797,29 +798,30 @@ const n = { x, y, ...z };
 console.log(n); // { x: 1, y: 2, a: 3, b: 4 }
 ```
 
-#### Explanation
+#### <a name="explanation-1"></a>Wyjaśnienie
 
-##### In iterables (like arrays)
+##### <a name="in-iterables-like-arrays"></a>W obiektach iterowalnych (np. tablicach)
 
-If we have the two following arrays:
+Jeśli mamy dwie następujące tablice:
 
 ```js
 const arr1 = ["a", "b", "c"];
 const arr2 = [arr1, "d", "e", "f"]; // [["a", "b", "c"], "d", "e", "f"]
 ```
 
-*arr2* the first element is an array because *arr1* is injected as is into *arr2*. But what we want is *arr2* to be an array of letters. To do so, we can *spread* the elements of *arr1* into *arr2*.
+Pierwszy element tablicy *arr2* jest tablicą, ponieważ *arr1* został wprowadzony do *arr2* bezpośrednio. Co jednak, jeśli chcemy, by *arr2* było tablicą liter? Możemy rozwinąć (*spread*) elementy *arr1* w tablicy *arr2*.
 
-With spread operator
+Z operatorem rozwijania
 
 ```js
 const arr1 = ["a", "b", "c"];
 const arr2 = [...arr1, "d", "e", "f"]; // ["a", "b", "c", "d", "e", "f"]
 ```
 
-##### Function rest parameter
+##### <a name="function-rest-parameter"></a>Parametry rest
 
-In function parameters, we can use the rest operator to inject parameters into an array we can loop in. There is already an **argument** object bound to every function that is equal to an array of all the parameters passed into the function.
+Operator rest pozwala przedstawić dowolna liczbę argumentów w postaci tablicy, po elementach której można iterować. Istnieje już obiekt **argument** związany z każdą funkcją i równy tablicy wszystkich argumentów przekazanych do danej funkcji.
+
 
 ```js
 function myFunc() {
@@ -836,17 +838,17 @@ myFunc("Nick", "Anderson", 10, 12, 6);
 // 6
 ```
 
-But let's say that we want this function to create a new student with its grades and with its average grade. Wouldn't it be more convenient to extract the first two parameters into two separate variables, and then have all the grades in an array we can iterate over?
+Wyobraźmy sobie teraz, że chcemy, żeby nasza funkcja tworzyła nowego ucznia z ocenami i średnią. Czy nie byłoby wygodniej zapisać dwa pierwsze argumenty jako dwie oddzielne zmienne, a wszystkie oceny umieścić w iterowalnej tablicy?
 
-That's exactly what the rest operator allows us to do!
+Właśnie na to pozwala nam operator rest!
 
 ```js
 function createStudent(firstName, lastName, ...grades) {
   // firstName = "Nick"
   // lastName = "Anderson"
-  // [10, 12, 6] -- "..." takes all other parameters passed and creates a "grades" array variable that contains them
+  // [10, 12, 6] -- "..." bierze wszystkie pozostałe argumenty przekazane funkcji i tworzy zmienną "grades" z przechowującą je tablicą
 
-  const avgGrade = grades.reduce((acc, curr) => acc + curr, 0) / grades.length; // computes average grade from grades
+  const avgGrade = grades.reduce((acc, curr) => acc + curr, 0) / grades.length; // oblicza średnią z ocen
 
   return {
     firstName: firstName,
@@ -866,37 +868,37 @@ console.log(student);
 // }
 ```
 
-> **Note:** createStudent function is bad because we don't check if grades.length exists or is different from 0. But it's easier to read this way, so I didn't handle this case.
+> **Uwaga:** funkcja createStudent jest zła, bo nie sprawdzamy, czy grades.length istnieje i czy jest różna od zera. Nie ująłem tej sytuacji w kodzie, żeby funkcja była bardziej czytelna.
 
-##### Object properties spreading
+##### <a name="object-properties-spreading"></a>Rozwijanie własności obiektów
 
-For this one, I recommend you read previous explanations about the rest operator on iterables and function parameters.
+Aby zrozumieć tę część, polecam najpierw przeczytać poprzednie sekcje dotyczące użycia operatora rest na iterowalnych obiektach i parametrach funkcji.
 
 ```js
 const myObj = { x: 1, y: 2, a: 3, b: 4 };
-const { x, y, ...z } = myObj; // object destructuring here
+const { x, y, ...z } = myObj; // destrukturyzacja obiektu
 console.log(x); // 1
 console.log(y); // 2
 console.log(z); // { a: 3, b: 4 }
 
-// z is the rest of the object destructured: myObj object minus x and y properties destructured
+// z to reszta destrukturyzowanego obiektu: myObj object minus destrukturyzowane własności x i y
 
 const n = { x, y, ...z };
 console.log(n); // { x: 1, y: 2, a: 3, b: 4 }
 
-// Here z object properties are spread into n
+// Własności obiektu z są rozwinięte w n
 ```
 
-#### External resources
+#### <a name="external-resources"></a>Dodatkowe źródła
 
 - [TC39 - Object rest/spread](https://github.com/tc39/proposal-object-rest-spread)
 - [Spread operator introduction - WesBos](https://github.com/wesbos/es6-articles/blob/master/28%20-%20Spread%20Operator%20Introduction.md)
 - [JavaScript & the spread operator](https://codeburst.io/javascript-the-spread-operator-a867a71668ca)
 - [6 Great uses of the spread operator](https://davidwalsh.name/spread-operator)
 
-### Object property shorthand
+### <a name="object-property-shorthand"></a>Skrócony zapis własności obiektów
 
-When assigning a variable to an object property, if the variable name is equal to the property name, you can do the following:
+Kiedy przypisujemy zmienną do własności obiektu, jeśli nazwa zmiennej jest taka sama, jak nazwa własności, możemy zrobić coś takiego:
 
 ```js
 const x = 10;
@@ -904,26 +906,26 @@ const myObj = { x };
 console.log(myObj.x) // 10
 ```
 
-#### Explanation
+#### <a name="explanation-2"></a>Wyjaśnienie
 
-Usually (pre-ES2015) when you declare a new *object literal* and want to use variables as object properties values, you would write this kind of code:
+Dotychczas (przed ES2015), kiedy chcieliśmy przy deklaracji nowego literału obiektowego (*object literal*) zastosować zmienne jako jego własności, zapisalibyśmy to w ten sposób:
 
 ```js
 const x = 10;
 const y = 20;
 
 const myObj = {
-  x: x, // assigning x variable value to myObj.x
-  y: y // assigning y variable value to myObj.y
+  x: x, // przypisanie wartości zmiennej x do myObj.x
+  y: y // przypisanie wartości zmiennej y do myObj.y
 };
 
 console.log(myObj.x) // 10
 console.log(myObj.y) // 20
 ```
 
-As you can see, this is quite repetitive because the properties name of myObj are the same as the variable names you want to assign to those properties.
+Jak widać, jest to dość powtarzalne, bo nazwy własności myObj są takie same, jak nazwy zmiennych, które chcemy przypisać do tych własności.
 
-With ES2015, when the variable name is the same as the property name, you can do this shorthand:
+Z ES2015, jeśli nazwa zmiennej jest taka sama jak własności, możemy skorzystać ze skróconego zapisu:
 
 ```js
 const x = 10;
@@ -938,17 +940,17 @@ console.log(myObj.x) // 10
 console.log(myObj.y) // 20
 ```
 
-#### External resources
+#### <a name="external-resources-1"></a>Dodatkowe źródła
 
 - [Property shorthand - ES6 Features](http://es6-features.org/#PropertyShorthand)
 
-### Promises
+### <a name="promises"></a>Obietnice (promises)
 
-A promise is an object which can be returned synchronously from an asynchronous function ([ref](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261#3cd0)).
+Obietnica (promise) to obiekt, który może być zwrócony synchronicznie z asynchronicznej funkcji. ([ref](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261#3cd0)).
 
-Promises can be used to avoid [callback hell](http://callbackhell.com/), and they are more and more frequently encountered in modern JavaScript projects.
+Obietnice pozwalają zapobiec tzw. [callback hell](http://callbackhell.com/), i stosowane są coraz częściej we współczesnych projektach tworzonych w języku JavaScript.
 
-#### Sample code
+#### <a name="sample-code-4"></a>Przykładowy kod
 
 ```js
 const fetchingPosts = new Promise((res, rej) => {
@@ -962,43 +964,43 @@ fetchingPosts
   .catch(err => console.log(err));
 ```
 
-#### Explanation
+#### <a name="explanation-3"></a>Wyjaśnienie
 
-When you do an *Ajax request* the response is not synchronous because you want a resource that takes some time to come. It even may never come if the resource you have requested is unavailable for some reason (404).
+Kiedy wykonujemy **zapytanie Ajax** odpowiedź nie jest synchroniczna, ponieważ żądamy zasobu, którego pobranie wymaga czasu. Może się nawet zdarzyć, że z jakiegoś powodu (404) zasób nigdy nie zostanie pobrany.
 
-To handle that kind of situation, ES2015 has given us *promises*. Promises can have three different states:
+Aby radzić sobie w tego typu sytuacjach, ES2015 daje nam obietnice (*promises*). Obietnice mogą mieć trzy różne stany:
 
-- Pending
-- Fulfilled
-- Rejected
+- oczekujący (pending)
+- zakończony (fulfilled)
+- odrzucony (rejected)
 
-Let's say we want to use promises to handle an Ajax request to fetch the resource X.
+Powiedzmy, że chcemy wykorzystać obietnice dla obsługi zapytania Ajax w celu pobrania zasobu X.
 
-##### Create the promise
+##### <a name="create-the-promise"></a>Tworzenie obietnicy
 
-We firstly are going to create a promise. We will use the jQuery get method to do our Ajax request to X.
+Najpierw musimy stworzyć obietnicę. Dla stworzenia zapytania Ajax do zasobu X użyjemy metody GET jQuery.
 
 ```js
-const xFetcherPromise = new Promise( // Create promise using "new" keyword and store it into a variable
-  function(resolve, reject) { // Promise constructor takes a function parameter which has resolve and reject parameters itself
-    $.get("X") // Launch the Ajax request
-      .done(function(X) { // Once the request is done...
-        resolve(X); // ... resolve the promise with the X value as parameter
+const xFetcherPromise = new Promise( // Tworzymy obietnicę poprzez słowo kluczowe new i zapisujemy go do zmiennej
+  function(resolve, reject) { // Konstruktor obietnicy przyjmuje jako argument funkcję, która sama przyjmuje dwa argumenty: resolve i reject
+    $.get("X") // Uruchamiamy zapytanie Ajax
+      .done(function(X) { // Kiedy zapytanie jest gotowe...
+        resolve(X); // ... wypełniamy obietnicę z wartością X jako argumentem
       })
-      .fail(function(error) { // If the request has failed...
-        reject(error); // ... reject the promise with the error as parameter
+      .fail(function(error) { // Jeśli zapytanie się nie udało...
+        reject(error); // ... odrzucamy obietnicę z wartością X jako argumentem
       });
   }
 )
 ```
 
-As seen in the above sample, the Promise object takes an *executor* function which takes two parameters **resolve** and **reject**. Those parameters are functions which when called are going to move the promise *pending* state to respectively a *fulfilled* and *rejected* state.
+Jak widać na przykładzie, obiekt Promise przyjmuje funkcję-*executor*, która z kolei przy dwa argumenty **resolve** i **reject**. Argumenty te są funkcjami, które przy wezwaniu zmieniają stan obietnicy oczekujący (*pending*) na, odpowiednio, zakończony (*fulfilled*) i odrzucony (*rejected*).
 
-The promise is in pending state after instance creation and its *executor* function is executed immediately. Once one of the function *resolve* or *reject* is called in the *executor* function, the promise will call its associated handlers.
+Obietnica znajduje się w stanie oczekiwania po stworzeniu instancji, a jej funkcja-*executor* jest natychmiast wykonywana. Kiedy jedna z funkcji *resolve* bądź *reject* zostanie wezwana w funkcji-*executor*, obietnica wywoła związane z nią procedury obsługi.
 
-##### Promise handlers usage
+##### <a name="promise-handlers-usage"></a>Użycie procedur obsługi
 
-To get the promise result (or error), we must attach to it handlers by doing the following:
+By otrzymać rezultat obietnicy (lub błąd), musimy podpiąć ją pod procedury obsługi używając następującego kodu:
 
 ```js
 xFetcherPromise
@@ -1010,13 +1012,13 @@ xFetcherPromise
   })
 ```
 
-If the promise succeeds, *resolve* is executed and the function passed as ```.then``` parameter is executed.
+Jeśli wszystko przebiegło prawidłowo, zostaje wywołane *resolve* i wykonana zostaje funkcja przekazana jako argument ```.then```.
 
-If it fails, *reject* is executed and the function passed as ```.catch``` parameter is executed.
+Jeśli zapytanie się nie udało, zostaje wywołane *reject* i wykonana zostaje funkcja przekazana jako argument ```.catch```.
 
-> **Note :** If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached. [(Ref: MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Description)
+> **Uwaga:** Jeśli obietnica została już wypełniona lub odrzucona w momencie podpięcia odpowiedniej procedury obsługi, procedura będzie wywołana, tak więc nie wyniknie wyścig (race condition) między wykonaniem operacji asynchronicznej i wyznaczeniem procedur obsługi. [(Ref: MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Description)
 
-#### External Resources
+#### <a name="external-resources-2"></a>Dodatkowe źródła
 
 - [JavaScript Promises for dummies - Jecelyn Yeen](https://scotch.io/tutorials/javascript-promises-for-dummies)
 - [JavaScript Promise API - David Walsh](https://davidwalsh.name/promises)
@@ -1025,33 +1027,33 @@ If it fails, *reject* is executed and the function passed as ```.catch``` parame
 - [JavaScript Promises: an Introduction - Jake Archibald](https://developers.google.com/web/fundamentals/getting-started/primers/promises)
 - [Promise documentation - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-### Template literals
+### <a name="template-literals"></a>Łańcuchy szablonowe (template literals)
 
-Template literals is an [*expression interpolation*](https://en.wikipedia.org/wiki/String_interpolation) for single and multiple-line strings.
+Łańcuchy szablonowe to [*interpolacja wyrażenia*](https://en.wikipedia.org/wiki/String_interpolation) dla jedno- i wieloliniowych stringów.
 
-In other words, it is a new string syntax in which you can conveniently use any JavaScript expressions (variables for instance).
+Inaczej mówiąc, jest to nowa składnia stringów, pozwalająca na wygodne użycie dowolnych wyrażeń JavaScript (np. zmiennych).
 
-#### Sample code
+#### <a name="sample-code-5"></a>Przykładowy kod
 
 ```js
 const name = "Nick";
-`Hello ${name}, the following expression is equal to four : ${2+2}`;
+`Hello ${name}, następujące wyrażenie jest równe cztery: ${2+2}`;
 
-// Hello Nick, the following expression is equal to four: 4
+// Hello Nick, następujące wyrażenie jest równe cztery: 4
 ```
 
-#### External resources
+#### <a name="external-resources-3"></a>Dodatkowe źródła
 
 - [String interpolation - ES6 Features](http://es6-features.org/#StringInterpolation)
 - [ES6 Template Strings - Addy Osmani](https://developers.google.com/web/updates/2015/01/ES6-Template-Strings)
 
-### Tagged template literals
+### <a name="tagged-template-literals"></a>Oznaczone łańcuchy szablonowe
 
-Template tags are *functions that can be prefixed to a [template literal](#template-literals)*. When a function is called this way, the first parameter is an array of the *strings* that appear between the template's interpolated variables, and the subsequent parameters are the interpolated values. Use a spread operator `...` to capture all of them. [(Ref: MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals).
+Tagi szablonowe to *funkcje które mogą być prefiksem dla [łańcucha szablonowego](#template-literals)*. Kiedy funkcja zostaje wezwana w ten sposób, pierwszy argument stanowi tablica *stringów*, które pojawiają się między interpolowanymi zmiennymi, a kolejne parametry to znaczenia wyrażeń wstawionych w string. Dla przechwycenia ich wszystkich można użyć operatora rozwijania. [(Ref: MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals).
 
-> **Note :** A famous library named [styled-components](https://www.styled-components.com/) heavily relies on this feature.
+> **Uwaga :** Słynna biblioteka [styled-components](https://www.styled-components.com/) w dużej mierze polega na tej funkcjonalności.
 
-Below is a toy example on how they work.
+Poniżej znajduje się przykład działania tagów szablonowych:
 ```js
 function highlight(strings, ...values) {
   const interpolation = strings.reduce((prev, current) => {
@@ -1068,7 +1070,7 @@ highlight`I like ${condiment} on ${meal}.`;
 // "I like <mark>jam</mark> on <mark>toast</mark>."
 ```
 
-A more interesting example:
+I jeszcze jeden - ciekawszy - przykład:
 ```js
 function comma(strings, ...values) {
   return strings.reduce((prev, next) => {
@@ -1083,23 +1085,24 @@ comma`I like ${snacks} to snack on.`;
 // "I like apples, bananas, cherries to snack on."
 ```
 
-#### External resources
+#### <a name="external-resources-4"></a>Dodatkowe źródła
 - [Wes Bos on Tagged Template Literals](http://wesbos.com/tagged-template-literals/)
 - [Library of common template tags](https://github.com/declandewet/common-tags)
 
-### Imports / Exports
+### <a name="imports--exports"></a>Importy / eksporty
 
-ES6 modules are used to access variables or functions in a module explicitly exported by the modules it imports.
+Moduły ES6 są używane dla otrzymania dostępu do zmiennych lub funkcji z drugich modułów, przy czym eksport powinien być jasno oznaczony w wyjściowym module.
 
-I highly recommend to take a look at MDN resources on import/export (see external resources below), it is both straightforward and complete.
+Bardzo polecam zapoznać się z zasobami MDN dotyczącymi importów i eksportów (zobacz: Dodatkowe materiały), znajdziecie tam dokładne i przystępne wyjaśnienie.
 
-#### Explanation with sample code
+#### <a name="explanation-with-sample-code-1"></a>Wyjaśnienie z przykładowym kodem
 
-##### Named exports
+##### <a name="named-exports"></a>Nazwane eksporty (named exports)
 
-Named exports are used to export several values from a module.
+Nazwane eksporty są używane do eksportu kilku wartości z modułu.
 
-> **Note :** You can only name-export [first-class citizens](https://en.wikipedia.org/wiki/First-class_citizen) that have a name.
+> **Uwaga :** W nazwanych eksportach można stosować jedynie [typy pierwszoklasowe](https://en.wikipedia.org/wiki/First-class_citizen), które posiadają nazwę.
+
 
 ```js
 // mathConstants.js
@@ -1110,29 +1113,29 @@ export const alpha = 0.35;
 // -------------
 
 // myFile.js
-import { pi, exp } from './mathConstants.js'; // Named import -- destructuring-like syntax
+import { pi, exp } from './mathConstants.js'; // Nazwany import - składnia podobna do destrukturyzacji
 console.log(pi) // 3.14
 console.log(exp) // 2.7
 
 // -------------
 
 // mySecondFile.js
-import * as constants from './mathConstants.js'; // Inject all exported values into constants variable
+import * as constants from './mathConstants.js'; // Wszystkie eksportowane wartości przypisane są do zmiennej constants
 console.log(constants.pi) // 3.14
 console.log(constants.exp) // 2.7
 ```
 
-While named imports looks like *destructuring*, they have a different syntax and are not the same. They don't support default values nor *deep* destructuring.
+Chociaż nazwane importy przypominają *destrukturyzację*, posiadają inną składnią i nie są tym samym. Nie wspierają ani wartości domyślnych, ani *głębokiej* destrukturyzacji.
 
-Besides, you can do aliases but the syntax is different from the one used in destructuring:
+Poza tym, można tworzyć aliasy, ale składnia wygląda inaczej niż przy destrukturyzacji:
 
 ```js
-import { foo as bar } from 'myFile.js'; // foo is imported and injected into a new bar variable
+import { foo as bar } from 'myFile.js'; // foo jest importowane i przypisane do nowej zmiennej bar
 ```
 
-##### Default import / export
+##### <a name="default-import--export"></a>Domyślny import / export
 
-Concerning the default export, there is only a single default export per module. A default export can be a function, a class, an object or anything else. This value is considered the "main" exported value since it will be the simplest to import. [Ref: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export#Description)
+W przypadku domyślnego eksportu na jeden moduł przypada jeden domyślny eksport. Domyślny eksport może być funkcją, klasą, obiektem itp. Wartość ta jest traktowana jako "główna" eksportowana wartość, ponieważ importowanie jej jest najprostsze. [Ref: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export#Description)
 
 ```js
 // coolNumber.js
@@ -1143,11 +1146,11 @@ export default ultimateNumber;
 
 // myFile.js
 import number from './coolNumber.js';
-// Default export, independently from its name, is automatically injected into number variable;
+// Eksport domyślny, niezależnie od swojej nazwy w wyjściowym module, automatycznie przypisywany jest do zmiennej number;
 console.log(number) // 42
 ```
 
-Function exporting:
+Eksport funkcji:
 
 ```js
 // sum.js
@@ -1162,7 +1165,7 @@ const result = sum(1, 2);
 console.log(result) // 3
 ```
 
-#### External resources
+#### <a name="external-resources-5"></a>Dodatkowe źródła
 
 - [ES6 Modules in bulletpoints](https://ponyfoo.com/articles/es6#modules)
 - [Export - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export)
@@ -1172,26 +1175,26 @@ console.log(result) // 3
 - [Misunderstanding ES6 Modules - Kent C. Dodds](https://medium.com/@kentcdodds/misunderstanding-es6-modules-upgrading-babel-tears-and-a-solution-ad2d5ab93ce0)
 - [Modules in JavaScript](http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript)
 
-### <a name="this_def"></a> JavaScript *this*
+### <a name="-javascript-this"></a> *this* w JavaScript
 
-*this* operator behaves differently than in other languages and is in most cases determined by how a function is called. ([Ref: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)).
+Operator *this* zachowuje się inaczej niż w innych językach. W większości przypadków jego zachowanie zależy od tego, jak wywoływana jest funkcja.
 
-This notion is having many subtleties and being quite hard, I highly suggest you to deep dive in the external resources below. Thus, I will provide what I personally have in mind to determine what *this* is equal to. I have learned this tip from [this article written by Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
+Zagadnienie to może być dość trudne do zrozumienia, dlatego polecam zapoznać się dokładnie z dodatkowymi materiałami podanymi niżej. Postaram się wyjaśnić, jak sam rozumiem działanie *this*. Nauczyłem się tego z [artykułu Yehudy Katza](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
 
 ```js
 function myFunc() {
   ...
 }
 
-// After each statement, you find the value of *this* in myFunc
+// Po każdym wyrażeniu postaramy się określić znaczenie this w myFunc
 
-myFunc.call("myString", "hello") // "myString" -- first .call parameter value is injected into *this*
+myFunc.call("myString", "hello") // "myString" -- pierwszy parametr .call zapisywany jest w *this*
 
-// In non-strict-mode
-myFunc("hello") // window -- myFunc() is syntax sugar for myFunc.call(window, "hello")
+// W trybie non-strict
+myFunc("hello") // window -- myFunc() to cukier syntaktyczny dla myFunc.call(window, "hello")
 
-// In strict-mode
-myFunc("hello") // undefined -- myFunc() is syntax sugar for myFunc.call(undefined, "hello")
+// W trybie strict
+myFunc("hello") // undefined -- myFunc() to cukier syntaktyczny dla myFunc.call(undefined, "hello")
 ```
 
 ```js
@@ -1199,30 +1202,30 @@ var person = {
   myFunc: function() { ... }
 }
 
-person.myFunc.call(person, "test") // person Object -- first call parameter is injected into *this*
-person.myFunc("test") // person Object -- person.myFunc() is syntax sugar for person.myFunc.call(person, "test")
+person.myFunc.call(person, "test") // person Object -- pierwszy parametr .call zapisywany jest w *this*
+person.myFunc("test") // person Object -- person.myFunc() to cukier syntaktyczny dla person.myFunc.call(person, "test")
 
-var myBoundFunc = person.myFunc.bind("hello") // Creates a new function in which we inject "hello" in *this* value
-person.myFunc("test") // person Object -- The bind method has no effect on the original method
-myBoundFunc("test") // "hello" -- myBoundFunc is person.myFunc with "hello" bound to *this*
+var myBoundFunc = person.myFunc.bind("hello") // Tworzy nową funkcję, w której "hello" zapisywane jest w *this*
+person.myFunc("test") // person Object -- Metoda bind nie ma wpływu na oryginalną metodę
+myBoundFunc("test") // "hello" -- myBoundFunc to person.myFunc z "hello" przywiązanym do *this*
 ```
 
-#### External resources
+#### <a name="external-resources-6"></a>Dodatkowe źródła
 
 - [Understanding JavaScript Function Invocation and "this" - Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)
 - [JavaScript this - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 
-### Class
+### <a name="class"></a>Klasa
 
-JavaScript is a [prototype-based](https://en.wikipedia.org/wiki/Prototype-based_programming) language (whereas Java is [class-based](https://en.wikipedia.org/wiki/Class-based_programming) language, for instance). ES6 has introduced JavaScript classes which are meant to be a syntactic sugar for prototype-based inheritance and **not** a new class-based inheritance model ([ref](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)).
+JavaScript jest językiem [opartym na prototypach](https://en.wikipedia.org/wiki/Prototype-based_programming) (podczas gdy, na przykład, Java jest [oparta na klasach](https://en.wikipedia.org/wiki/Class-based_programming)). ES6 wprowadza klasy JavaScript, które mają być cukrem syntaktycznym dla dziedziczenia opartego na prototypach a *nie* nowym modelem dziedziczenia opartego na klasach ([ref](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)).
 
-The word *class* is indeed error prone if you are familiar with classes in other languages. If you do, avoid assuming how JavaScript classes work on this basis and consider it an entirely different notion.
+Użycie słowa *class* może istotnie prowadzić do błędów, jeśli jesteśmy przyzwyczajeni do klas stosowanych w innych językach. Dlatego też klasy w JavaScript lepiej traktować jak zupełnie odrębne zagadnienie.
 
-Since this document is not an attempt to teach you the language from the ground up, I will believe you know what prototypes are and how they behave. If you do not, see the external resouces listed below the sample code.
+Ponieważ nasz przewodnik nie ma na celu nauki języka od podstaw, zakładam, że wiesz, czym są prototypy i jak działają. Jeśli nie, zapoznaj się z dodatkowymi materiałami znajdującymi się pod kodem przykładowym.
 
-#### Samples
+#### <a name="samples"></a>Przykłady
 
-Before ES6, prototype syntax:
+Składnia prototypu sprzed ES6:
 
 ```js
 var Person = function(name, age) {
@@ -1234,7 +1237,7 @@ Person.prototype.stringSentence = function() {
 }
 ```
 
-With ES6 class syntax:
+Składnia klasy z ES6:
 
 ```js
 class Person {
@@ -1253,31 +1256,31 @@ console.log(myPerson.age) // 23
 console.log(myPerson.stringSentence()) // "Hello, my name is Manu and I'm 23
 ```
 
-#### External resources
+#### <a name="external-resources-7"></a>Dodatkowe źródła
 
-For prototype understanding:
+Omówienie prototypów:
 
 - [Understanding Prototypes in JS - Yehuda Katz](http://yehudakatz.com/2011/08/12/understanding-prototypes-in-javascript/)
 - [A plain English guide to JS prototypes - Sebastian Porto](http://sporto.github.io/blog/2013/02/22/a-plain-english-guide-to-javascript-prototypes/)
 - [Inheritance and the prototype chain - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
 
-For classes understanding:
+Omówienie klas:
 
 - [ES6 Classes in Depth - Nicolas Bevacqua](https://ponyfoo.com/articles/es6-classes-in-depth)
 - [ES6 Features - Classes](http://es6-features.org/#ClassDefinition)
 - [JavaScript Classes - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
-### `Extends` and `super` keywords
+### <a name="extends-and-super-keywords"></a>Słowa kluczowe `extends` i `super`
 
-The `extends` keyword is used in class declarations or class expressions to create a class which is a child of another class ([Ref: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends)). The subclass inherits all the properties of the superclass and additionally can add new properties or modify the inherited ones.
+Słowo kluczowe `extends` używane jest w deklaracji klas w celu stworzenia klasy dziedziczącej od innej klasy ([Ref: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends)). Klasa pochodna dziedziczy wszystkie własności klasy bazowej, może dodawać nowe lub modyfikować odziedziczone własności.
 
-The `super` keyword is used to call functions on an object's parent, including its constructor.
+Słowo kluczowe `super` służy do wzywania funkcji na klasie bazowej obiektu, włącznie z jej konstruktorem.
 
-- `super` keyword must be used before the `this` keyword is used in constructor
-- Invoking `super()` calls the parent class constructor. If you want to pass some arguments in a class's constructor to its parent's constructor, you call it with `super(arguments)`.
-- If the parent class have a method (even static) called `X`, you can use `super.X()` to call it in a child class.
+- słowo kluczowe `super` musi być użyte przed słowem `this` w konstruktorze
+- Wezwanie `super()` wywołuje konstruktor klasy bazowej. Jeśli chcesz przekazać argumenty w konstruktorze klasy do konstruktora klasy bazowej, użyj `super(arguments)`.
+- Jeśli klasa bazowa posiada metodę (także statyczną) o nazwie `X`, można użyć `super.X()`, by wywołać ją w klasie pochodnej.
 
-#### Sample Code
+#### <a name="sample-code-6"></a>Przykładowy kod
 
 ```js
 class Polygon {
@@ -1294,17 +1297,15 @@ class Polygon {
 
 class Square extends Polygon {
   constructor(length) {
-    // Here, it calls the parent class' constructor with lengths
-    // provided for the Polygon's width and height
+    // Wzywany jest konstruktor klasy bazowej z szerokością i długością przekazanymi przez Polygon
     super(length, length);
-    // Note: In derived classes, super() must be called before you
-    // can use 'this'. Leaving this out will cause a reference error.
+    // Uwaga: W klasach pochodnych super() musi zostać wezwane przed 'this'. W przeciwnym razie pojawi się błąd.
     this.name = 'Square';
     this.length = length;
   }
 
   getCustomHelloPhrase() {
-    const polygonPhrase = super.getHelloPhrase(); // accessing parent method with super.X() syntax
+    const polygonPhrase = super.getHelloPhrase(); // super.X() daje dostęp do metody klasy bazowej
     return `${polygonPhrase} with a length of ${this.length}`;
   }
 
@@ -1315,79 +1316,78 @@ class Square extends Polygon {
 
 const mySquare = new Square(10);
 console.log(mySquare.area) // 100
-console.log(mySquare.getHelloPhrase()) // 'Hi, I am a Square' -- Square inherits from Polygon and has access to its methods
+console.log(mySquare.getHelloPhrase()) // 'Hi, I am a Square' -- Square dziedziczy od Polygon i ma dostęp do jego metod
 console.log(mySquare.getCustomHelloPhrase()) // 'Hi, I am a Square with a length of 10'
 ```
 
-**Note :** If we had tried to use `this` before calling `super()` in Square class, a ReferenceError would have been raised:
+**Uwaga :** Jeśli spróbujemy użyć `this` przed wezwaniem `super()` w klasie Square, pojawi się ReferenceError
 
 ```js
 class Square extends Polygon {
   constructor(length) {
-    this.height; // ReferenceError, super needs to be called first!
+    this.height; // ReferenceError, najpierw trzeba wezwać super!
 
-    // Here, it calls the parent class' constructor with lengths
-    // provided for the Polygon's width and height
+    // Wzywany jest konstruktor klasy bazowej z szerokością i długością przekazanymi przez Polygon
     super(length, length);
 
-    // Note: In derived classes, super() must be called before you
-    // can use 'this'. Leaving this out will cause a reference error.
+    // Uwaga: W klasach pochodnych super() musi zostać wezwane przed 'this'. W przeciwnym razie pojawi się błąd.
     this.name = 'Square';
   }
 }
 ```
 
-#### External Resources
+#### <a name="external-resources-8"></a>Dodatkowe źródła
 
 - [Extends - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends)
 - [Super operator - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 - [Inheritance - MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Inheritance)
 
-### Async Await
+### <a name="async-await"></a>Składnia async/await
 
-In addition to [Promises](#promises), there is a new syntax you might encounter to handle asynchronous code named *async / await*.
+Oprócz [Obietnic (Promises)](#promises), możesz spotkać jeszcze jeden rodzaj składni dla obsługi kodu asynchronicznego, a mianowicie *async / await*.
 
-The purpose of async/await functions is to simplify the behavior of using promises synchronously and to perform some behavior on a group of Promises. Just as Promises are similar to structured callbacks, async/await is similar to combining generators and promises. Async functions *always* returns a Promise. ([Ref: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function))
+Rolą funkcji async/await jest uproszczenie zachowania używanych synchronicznie obietnic oraz by używać grup Obietnic. Async/await przypomina połączenie generatorów i obietnic. Funkcje async *zawsze* zwracają Obietnicę ([Ref: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function))
 
-> **Note :** You must understand what promises are and how they work before trying to understand async / await since they rely on it.
+> **Uwaga :** Ponieważ funkcje async / await bazują na obietnicach, aby prawidłowo stosować wspomniane funkcje, musisz najpierw dobrze rozumieć działanie obietnic.
 
-> **Note 2:** [*await* must be used in an *async* function](https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9#f3f0), which means that you can't use await in the top level of our code since that is not inside an async function.
+> **Uwaga 2:** [*await* musi zostać użyte w funkcji *async*](https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9#f3f0), co oznacza, że await nie można użyć na wyższym poziomie kodu, nie znajdującym się wewnątrz funkcji async.
 
-#### Sample code
+#### <a name="sample-code-7"></a>Przykładowy kod
 
 ```js
-async function getGithubUser(username) { // async keyword allows usage of await in the function and means function returns a promise
-  const response = await fetch(`https://api.github.com/users/${username}`); // Execution is paused here until the Promise returned by fetch is resolved
+async function getGithubUser(username) { // słowo kluczowe async pozwala użyć await w funkcji i oznacza, że funkcja zwraca obietnicę
+  const response = await fetch(`https://api.github.com/users/${username}`); // Czeka na obietnicę przed przejściem do reszty kodu
   return response.json();
 }
 
 getGithubUser('mbeaudru')
-  .then(user => console.log(user)) // logging user response - cannot use await syntax since this code isn't in async function
-  .catch(err => console.log(err)); // if an error is thrown in our async function, we will catch it here
+  .then(user => console.log(user)) // logowanie użytkownika - nie można użyć await, bo nie znajduje się w funkcji async
+  .catch(err => console.log(err)); // jeśli w funkcji async pojawi się błąd, wyłapujemy go tutaj
 ```
 
-#### Explanation with sample code
+#### <a name="explanation-with-sample-code-2"></a>Wyjaśnienie z przykładowym kodem
 
-*Async / Await* is built on promises but they allow a more imperative style of code.
+*Async / Await* jest zbudowany na obietnicach, ale pozwala na bardziej imperatywny styl kodu.
 
-The *async* operator marks a function as asynchronous and will always return a *Promise*. You can use the *await* operator in an *async* function to pause execution on that line until the returned Promise from the expression either resolves or rejects.
+Operator *async* oznacza funkcję jako asynchroniczną. Dana funkcja zawsze zwraca Obietnicę. W funkcji *async* można użyć operatora *async*, aby zatrzymać wykonanie kodu na danej linijce dopóki zwracana Obietnica nie zostanie wypełniona bądź odrzucona.
 
 ```js
 async function myFunc() {
-  // we can use await operator because this function is async
+  // ponieważ to funkcja async, możemy użyć operatora await
   return "hello world";
 }
 
-myFunc().then(msg => console.log(msg)) // "hello world" -- myFunc's return value is turned into a promise because of async operator
+myFunc().then(msg => console.log(msg)) // "hello world" -- wartość zwracana przez myFunc jest przekształcana w obietnicę ze względu na operator async
 ```
 
-When the *return* statement of an async function is reached, the Promise is fulfilled with the value returned. If an error is thrown inside an async function, the Promise state will turn to *rejected*. If no value is returned from an async function, a Promise is still returned and resolves with no value when execution of the async function is complete.
+Kiedy zostaje osiągnięte wyrażenie *return* w funkcji async, Obietnica zostaje wypełniona ze zwracaną wartością. Jeśli wewnątrz funkcji async pojawia się błąd, stan Obietnicy zmienia się na *odrzucony* (*rejected*). Jeśli funkcja async nie zwraca żadnej wartości, Obietnica zostanie zwrócona i wypełniona bez wartości, kiedy zakończy się wykonanie funkcji async.
 
-*await* operator is used to wait for a *Promise* to be fulfilled and can only be used inside an *async* function body. When encountered, the code execution is paused until the promise is fulfilled.
 
-> **Note :** *fetch* is a function that returns a Promise that allows to do an AJAX request
+Operator *await* jest używany do oczekiwania na wypełnienie Obietnicy i może być użyty jedynie w ciele funkcji *async*. Kiedy zostanie osiągnięty, następuje wstrzymanie wypełnienia kodu do chwili wypełnienia obietnicy.
 
-Let's see how we could fetch a github user with promises first:
+> **Uwaga :** *fetch* to funkcja, która zwraca Obietnicę i pozwala na wykonania zapytania Ajax.
+
+Rozpatrzmy przykład użycia fetch z obietnicami:
 
 ```js
 function getGithubUser(username) {
@@ -1399,11 +1399,11 @@ getGithubUser('mbeaudru')
   .catch(err => console.log(err));
 ```
 
-Here's the *async / await* equivalent:
+A oto ekwiwalent z *async / await*:
 
 ```js
-async function getGithubUser(username) { // promise + await keyword usage allowed
-  const response = await fetch(`https://api.github.com/users/${username}`); // Execution stops here until fetch promise is fulfilled
+async function getGithubUser(username) { // dozwolone użycie obietnicy + await
+  const response = await fetch(`https://api.github.com/users/${username}`); // Wykonanie wstrzymane do czasu wypełnienia obietnicy fetch
   return response.json();
 }
 
@@ -1412,11 +1412,11 @@ getGithubUser('mbeaudru')
   .catch(err => console.log(err));
 ```
 
-*async / await* syntax is particularly convenient when you need to chain promises that are interdependent.
+Składnia *async / await* jest wyjątkowo użyteczna, gdy chcemy połączyć w łańcuch wzajemnie zależne od siebie obietnice.
 
-For instance, if you need to get a token in order to be able to fetch a blog post on a database and then the author informations:
+Na przykład, kiedy potrzebujemy tokena, by pobrać z bazy danych post na blogu i informacje o autorze:
 
-> **Note :** *await* expressions needs to be wrapped in parentheses to call its resolved value's methods and properties on the same line.
+> **Uwaga :** wyrażenia *await* muszą być otoczone nawiasami, aby można było wezwać wartości ich metod i własności w jednej linijce.
 
 ```js
 async function fetchPostById(postId) {
@@ -1433,16 +1433,16 @@ fetchPostById('gzIrzeo64')
   .catch(err => console.log(err));
 ```
 
-##### Error handling
+##### <a name="error-handling"></a>Obsługa błędów
 
-Unless we add *try / catch* blocks around *await* expressions, uncaught exceptions – regardless of whether they were thrown in the body of your *async* function or while it’s suspended during *await* – will reject the promise returned by the *async* function. Using the `throw` statement in an async function is the same as returning a Promise that rejects. [(Ref: PonyFoo)](https://ponyfoo.com/articles/understanding-javascript-async-await#error-handling).
+Jeśli nie dodamy bloków *try / catch* wokół wyrażeń *await*, nieschwytane wyjątki - niezależnie od tego, czy pojawią się w ciele funkcji *async*, czy zostaną wstrzymane w czasie *await* - doprowadzą do odrzucenia obietnicy zwracanej przez funkcję *async*. Użycie wyrażenia `throw` w funkcji async sprowadza się do tego samego, co zwrot odrzuconej obietnicy. [(Ref: PonyFoo)](https://ponyfoo.com/articles/understanding-javascript-async-await#error-handling).
 
-> **Note :** Promises behave the same!
+> **Uwaga :** Obietnice zachowują się tak samo!
 
-With promises, here is how you would handle the error chain:
+Oto jak obsługujemy błędy z pomocą obietnic:
 
 ```js
-function getUser() { // This promise will be rejected!
+function getUser() { // Obietnica będzie odrzucona!
   return new Promise((res, rej) => rej("User not found !"));
 }
 
@@ -1459,10 +1459,10 @@ getUserAvatar('mbeaudru')
   .catch(err => console.log(err)); // "User not found !"
 ```
 
-The equivalent with *async / await*:
+Ekwiwalent z *async / await*:
 
 ```js
-async function getUser() { // The returned promise will be rejected!
+async function getUser() { // Zwrócona obietnica zostanie odrzucona!
   throw "User not found !";
 }
 
@@ -1481,7 +1481,7 @@ getUserAvatar('mbeaudru')
   .catch(err => console.log(err)); // "User not found !"
 ```
 
-#### External resources
+#### <a name="external-resources-9"></a>Dodatkowe źródła
 
 - [Async/Await - JavaScript.Info](https://javascript.info/async-await)
 - [ES7 Async/Await](http://rossboucher.com/await/#/)
@@ -1492,11 +1492,11 @@ getUserAvatar('mbeaudru')
 - [Await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
 - [Using async / await in express with node 8](https://medium.com/@Abazhenov/using-async-await-in-express-with-node-8-b8af872c0016)
 
-### Truthy / Falsy
+### <a name="truthy--falsy"></a>Prawda / fałsz
 
-In JavaScript, a truthy or falsy value is a value that is being casted into a boolean when evaluated in a boolean context. An example of boolean context would be the evaluation of an ```if``` condition:
+W JavaScript wartości "prawda" lub "fałsz" określane są w kontekście boolowskim. Przykładem kontekstu boolowskiego może być określenie warunku ```if```:
 
-Every value will be casted to ```true``` unless they are equal to:
+Jako prawda (```true```) określona będzie każda wartość, jeśli nie jest równa:
 
 - ```false```
 - ```0```
@@ -1505,62 +1505,57 @@ Every value will be casted to ```true``` unless they are equal to:
 - ```undefined```
 - ```NaN```
 
-Here are examples of *boolean context*:
+Przykłady *kontekstu boolowskiego*:
 
-- ```if``` condition evaluation
+- określenie warunku ```if```
 
 ```js
 if (myVar) {}
 ```
 
-```myVar``` can be any [first-class citizen](https://en.wikipedia.org/wiki/First-class_citizen) (variable, function, boolean) but it will be casted into a boolean because it's evaluated in a boolean context.
+```myVar``` może być dowolnym [obiektem pierwszoklasowym](https://en.wikipedia.org/wiki/First-class_citizen) (zmienna, funkcja, typ boolowski) ale będzie przekształcona w typ boolowski, ponieważ określana jest w kontekście boolowskim.
 
-- After logical **NOT** ```!``` operator
+- Po operatorze logicznym **NOT** ```!```
 
 This operator returns false if its single operand can be converted to true; otherwise, returns true.
+Operator ten zwraca "fałsz" jeśli jego jedyny operand może być przekształcony w znaczenie "prawda"; w przeciwnym razie zwraca "prawdę"
 
 ```js
-!0 // true -- 0 is falsy so it returns true
-!!0 // false -- 0 is falsy so !0 returns true so !(!0) returns false
-!!"" // false -- empty string is falsy so NOT (NOT false) equals false
+!0 // true -- 0 to "fałsz", więc zwraca "prawdę"
+!!0 // false -- 0 to "fałsz", więc !0 zwraca "prawdę", więc !(!0) zwraca "fałsz"
+!!"" // false -- pusty string to "fałsz", więc NOT (NOT false) równe jest "fałszowi"
 ```
 
-- With the *Boolean* object constructor
+- Z konstruktorem obiektu *Boolean*
 
 ```js
 new Boolean(0) // false
 new Boolean(1) // true
 ```
 
-- In a ternary evaluation
+- Z operatorem warunkowym
 
 ```js
-myVar ? "truthy" : "falsy"
+myVar ? "prawda" : "fałsz"
 ```
 
-myVar is evaluated in a boolean context.
+myVar jest określana w kontekście boolowskim.
 
-Be careful when comparing 2 values. The object values (that should be cast to true) is **not** being casted to Boolean but it forced to convert into a primitive value one using [ToPrimitives specification](http://javascript.info/object-toprimitive). Internally, when an object is compared to Boolean value like `[] == true`, it does `[].toString() == true` so...
-
-```js
-let a = [] == true // a is false since [].toString() give "" back.
-let b = [1] == true // b is true since [1].toString() give "1" back.
-let c = [2] == true // c is false since [2].toString() give "2" back.
 ```
 
-#### External resources
+#### <a name="external-resources-10"></a>Dodatkowe źródła
 
 - [Truthy (MDN)](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)
 - [Falsy (MDN)](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)
 - [Truthy and Falsy values in JS - Josh Clanton](http://adripofjavascript.com/blog/drips/truthy-and-falsy-values-in-javascript.html)
 
-### Anamorphisms and Catamorphisms
+### <a name="anamorphisms-and-catamorphisms"></a>Anomorfizmy i katamorfizmy
 
-#### Anamorphisms
+#### <a name="anamorphisms"></a>Anamorfizmy
 
-Anamorphisms are functions that map from some object to a more complex structure containing the type of the object. It is the process of *unfolding* a simple structure into a more complex one. Consider unfolding an integer to a list of integers. The integer is our initial object and the list of integers is the more complex structure.
+Anamorfizmy to funkcje, które mapują pewien obiekt to bardziej złożonej struktury zawierającej typ tego obiektu. Jest to proces *rozwijania* (*unfolding*) prostej struktury do bardziej złożonej. Rozpatrzmy rozwijanie liczby całkowitej do listy liczb całkowitych. Początkowym obiektem jest liczba całkowita, bardziej złożoną strukturą - lista liczb całkowitych.
 
-**Sample code**
+**Przykładowy kod**
 
 ```js
 function downToOne(n) {
@@ -1577,11 +1572,11 @@ downToOne(5)
   //=> [ 5, 4, 3, 2, 1 ]
 ```
 
-#### Catamorphisms
+#### <a name="catamorphisms"></a>Katamorfizmy
 
-Catamorphisms are the opposite of Anamorphisms, in that they take objects of more complex structure and *fold* them into simpler structures. Take the following example `product` which take a list of integers and returns a single integer.
+Katamorfizmy to przeciwieństwo anamorfizmów - "zwijają" bardziej skomplikowane struktury do prostszych. Przyjrzyjmy się funkcji `product`, która przyjmuje listę liczb całkowitych i zwraca pojedynczą liczbę całkowitą.
 
-**Sample code**
+**Przykładowy kod**
 
 ```js
 function product(list) {
@@ -1597,17 +1592,17 @@ function product(list) {
 product(downToOne(5)) // 120
 ```
 
-#### External resources
+#### <a name="external-resources-11"></a>Dodatkowe źródła
 
 * [Anamorphisms in JavaScript](http://raganwald.com/2016/11/30/anamorphisms-in-javascript.html)
 * [Anamorphism](https://en.wikipedia.org/wiki/Anamorphism)
 * [Catamorphism](https://en.wikipedia.org/wiki/Catamorphism)
 
-### Generators
+### <a name="generators"></a>Generatory
 
-Another way to write the `downToOne` function is to use a Generator. To instantiate a `Generator` object, one must use the `function *` declaration. Generators are functions that can be exited and later re-entered with its context (variable bindings) saved across re-entrances.  
+Innym sposobem zapisania funkcji `downToOne` jest użycie Generatora. Stworzenie instancji obiektu `Generator` wymaga użycia deklaracji funkcji `function *`. Generatory to funkcje, które mogą być zamknięte i później uruchomione ponownie z zachowaniem kontekstu między kolejnymi uruchomieniami.
 
-For example, the `downToOne` function above can be rewritten as:
+Na przykład funkcja `downToOne` może być zapisana tak:
 
 ```js
 function * downToOne(n) {
@@ -1619,12 +1614,12 @@ function * downToOne(n) {
 [...downToOne(5)] //[ 5, 4, 3, 2, 1 ]
 ```
 
-Generators return an iterable object. When the iterator's `next()` function is called, it is executed until the first `yield` expression, which specifies the value to be returned from the iterator or with `yield*`, which delegates to another generator function. When a `return` expression is called in the generator, it will mark the generator as done and pass back as the return value. Further calls to `next()` will not return any new values.
+Generatory zwracają obiekt iterowalny. Kiedy wzywana jest funkcja iteratora `next()`, jest ona wykonywana aż do perwszego wyrażenia `yield`, które określa wartość, jaka zostanie zwrócona przez iterator lub z `yield*`, które odsyła do kolejnej funkcji-generatora. Jeśli w generatorze wezwane jest wyrażenie `return`, generator zostanie oznaczony jako wyczerpany i przekazany jako wartość do zwrotu. Kolejne wezwania `next()` nie zwrócą żadnych nowych wartości.
 
-**Sample code**
+**Przykładowy kod**
 
 ```js
-// Yield Example
+// Przykład Yield
 function * idMaker() {
   var index = 0;
   while (index < 2) {
@@ -1640,7 +1635,7 @@ gen.next().value; // 1
 gen.next().value; // undefined
 ```
 
-The `yield*` expression enables a generator to call another generator function during iteration.
+Wyrażenie `yield*` pozwala generatorowi wywołać inną funkcję - generator - w czasie iteracji.
 
 ```js
 // Yield * Example
@@ -1666,7 +1661,7 @@ gen.next().value; // 20
 ```
 
 ```js
-// Generator Return Example
+// Przykład Generator Return
 function* yieldAndReturn() {
   yield "Y";
   return "R";
@@ -1679,17 +1674,17 @@ gen.next(); // { value: "R", done: true }
 gen.next(); // { value: undefined, done: true }
 ```
 
-#### External resources
+#### <a name="external-resources-12"></a>Dodatkowe źródła
 
 * [Mozilla MDN Web Docs, Iterators and Generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generators)
 
-### Static Methods
+### <a name="static-methods"></a>Metody statyczne
 
-#### Short explanation
+#### <a name="short-explanation-1"></a>Krótkie wyjaśnienie
 
-The `static` keyword is used in classes to declare static methods. Static methods are functions in a class that belongs to the class object and are not available to any instance of that class.
+Słowo kluczowe `static` jest używane w klasach dla deklaracji metod statycznych. Metody statyczne to funkcje klasy, które należą do obiektu klasy, ale nie są dostępne dla instancji tej klasy.
 
-#### Sample code
+#### <a name="sample-code-8"></a>Przykładowy kod
 
 ```js
 class Repo{
@@ -1698,20 +1693,20 @@ class Repo{
   }
 }
 
-//Note that we did not have to create an instance of the Repo class
+//Zauważ, że nie musieliśmy tworzyć instancji klasy Repo
 console.log(Repo.getName()) //Repo name is modern-js-cheatsheet
 
 let r = new Repo();
-console.log(r.getName()) //Uncaught TypeError: repo.getName is not a function
+console.log(r.getName()) //Nieprzechwycony TypeError: repo.getName nie jest funkcją
 ```
 
-#### Detailed explanation
+#### <a name="detailed-explanation-2"></a>Szczegółowe wyjaśnienie
 
-Static methods can be called within another static method by using the `this` keyword, this doesn't work for non-static methods though. Non-static methods cannot directly access static methods using the `this` keyword.
+Metody statyczne mogą być wezwane z innych metod statycznych za pomocą słowa kluczowego `this`, co nie działa w przypadku metod niestatycznych. Metody niestatyczne nie mają bezpośredniego dostępu do metod statycznych z użyciem `this`.
 
-##### Calling other static methods from a static method.
+##### <a name="calling-other-static-methods-from-a-static-method"></a>Wzywanie innych metod statycznych z metod statycznych
 
-To call a static method from another static method, the `this` keyword can be used like so;
+Aby wezwać metodę statyczną z innej metody statycznej, należy użyć słowa kluczowego `this`:
 
 ```js
 class Repo{
@@ -1727,12 +1722,12 @@ class Repo{
 console.log(Repo.modifyName()) //Repo name is modern-js-cheatsheet-added-this
 ```
 
-##### Calling static methods from non-static methods.
+##### <a name="calling-static-methods-from-non-static-methods"></a>Wzywanie metod statycznych z metod niestatycznych
 
-Non-static methods can call static methods in 2 ways;
-1. ###### Using the class name.
+Metody niestatyczne mogą wzywać metody statyczne na dwa sposoby;
+1. ###### Używając nazwy klasy.
 
-To get access to a static method from a non-static method we use the class name and call the static method like a property. e.g `ClassName.StaticMethodName`
+Aby zyskać dostęp do metody statycznej z metody niestatycznej używamy nazwy klasy i wzywamy metodę statyczną jak własność, np. `ClassName.StaticMethodName`
 
 ```js
 class Repo{
@@ -1745,14 +1740,14 @@ class Repo{
   }
 }
 
-// we need to instantiate the class to use non-static methods
+// musimy stworzyć instancję klasy, by mieć dostęp do metod niestatycznych
 let r = new Repo()
 console.log(r.useName()) //Repo name is modern-js-cheatsheet and it contains some really important stuff
 ```
 
-2. ###### Using the constructor
+2. ###### Używając konstruktora
 
-Static methods can be called as properties on the constructor object.
+Metody statyczne mogą być wzywane jak własności na obiekcie konstruktora.
 
 ```js
 class Repo{
@@ -1761,38 +1756,38 @@ class Repo{
   }
 
   useName(){
-    //Calls the static method as a property of the constructor
+    //Wzywa metodę statyczną jako własność konstruktora
     return this.constructor.getName() + ' and it contains some really important stuff'
   }
 }
 
-// we need to instantiate the class to use non-static methods
+// musimy stworzyć instancję klasy, by mieć dostęp do metod niestatycznych
 let r = new Repo()
 console.log(r.useName()) //Repo name is modern-js-cheatsheet and it contains some really important stuff
 ```
 
-#### External resources
+#### <a name="external-resources-13"></a>Dodatkowe źródła
 - [static keyword- MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static)
 - [Static Methods- Javascript.info](https://javascript.info/class#static-methods)
 - [Static Members in ES6- OdeToCode](http://odetocode.com/blogs/scott/archive/2015/02/02/static-members-in-es6.aspx)
 
-## Glossary
+## <a name="glossary"></a>Słowniczek
 
-### <a name="scope_def"></a> Scope
+### <a name="-scope"></a>Zakres widoczności (scope)
 
-The context in which values and expressions are "visible," or can be referenced. If a variable or other expression is not "in the current scope," then it is unavailable for use.
+Kontekst, w którym wartości i wyrażenia są "widoczne" lub można się do nich odwoływać. Jeśli zmienna lub inne wyrażenie "nie znajduje się w aktualnym zakresie widoczności", oznacza to, że jest niedostępna do użytku.
 
-Source: [MDN](https://developer.mozilla.org/en-US/docs/Glossary/Scope)
+Źródło: [MDN](https://developer.mozilla.org/en-US/docs/Glossary/Scope)
 
-### <a name="mutation_def"></a> Variable mutation
+### <a name="-variable-mutation"></a>Przekształcenie zmiennej (variable mutation)
 
-A variable is said to have been mutated when its initial value has changed afterward.
+Mówimy, że zmienna została przekształcona, kiedy jej wartość jest inna niż wartość początkowa.
 
 ```js
 var myArray = [];
-myArray.push("firstEl") // myArray is being mutated
+myArray.push("firstEl") // myArray została przekształcona
 ```
 
-A variable is said to be *immutable* if it can't be mutated.
+Zmienna jest określana jako "niemodyfikowalna" (*immutable*), kiedy nie może być przekształcana.
 
-[Check MDN Mutable article](https://developer.mozilla.org/en-US/docs/Glossary/Mutable) for more details.
+[Zobacz artykuł](https://developer.mozilla.org/en-US/docs/Glossary/Mutable).
